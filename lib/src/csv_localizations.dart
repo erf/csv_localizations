@@ -16,10 +16,10 @@ class CsvLocalizations {
   /// language code of current locale, set in [load] method
   String _languageCode;
 
-  /// default language code ( the first entry in the Csv file )
-  /// we don't use it now, but we could use it for default values if translations are not present
-  /// but i think it's good to NOT use it, so we will alert of missing translations
-  String _defaultCode;
+  // default language code ( the first entry in the Csv file )
+  // we don't use it now, but we could use it for default values if translations are not present
+  // but i think it's good to NOT use it, so we will alert of missing translations
+  //String _defaultCode;
 
   // true when translations have been loaded from file
   bool _loaded = false;
@@ -40,7 +40,7 @@ class CsvLocalizations {
     final List<List<dynamic>> rows = const CsvToListConverter().convert(cvsDoc);
     // i could set supported languages to languages, but we need those at startup..
     final List<String> languages = List<String>.from(rows.first);
-    _defaultCode = languages.first;
+    //_defaultCode = languages.first;
     _localizedValues.addEntries(languages.map((e) => MapEntry(e, {})));
     for (int i = 0; i < languages.length; i++) {
       final String languageCode = languages[i];

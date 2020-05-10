@@ -1,21 +1,23 @@
 # csv_localizations
 
-Localize your app using a single [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file for all translations.
+Localize your app using a [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file for all translations.
 
-A minimal implementation based on `LocalizationsDelegate`.
+## Usage
 
-## Install
+See [example](example)
 
-Add package to your `pubspec.yaml`:
+### Install
+
+Add package to your `pubspec.yaml`
 
 ```yaml
 dependencies:
   csv_localizations:
 ```
 
-## Usage
+### Add CSV asset
 
-Add a CSV translation file as an asset and describe it in your `pubspec.yaml`:
+Add a CSV translation file as an asset and describe it in your `pubspec.yaml`
 
 > Tip: Create a Spreadsheet via Google docs, then export as CSV
 
@@ -25,10 +27,6 @@ flutter:
     - assets/lang.csv
 ```
 
-The CSV top row list supported language codes, like: **en**, **nb**, etc.
-
-The rows below represent words in those languages.
-
 ##### CSV example file
 
 ```csv
@@ -37,7 +35,11 @@ Hi, Hi, Hei
 Cheese, Cheese, Ost
 ```
 
-Add `CsvLocalizationsDelegate` to `MaterialApp` and set `supportedLocales`:
+> Top row show supported language codes; rows below show translations
+
+### In code
+
+Add `CsvLocalizationsDelegate` to `MaterialApp` and set `supportedLocales`
 
 ```
 localizationsDelegates:[
@@ -53,6 +55,8 @@ supportedLocales: [Locale('en'), Locale('nb')],
 
 ```
 
+### API
+
 Now translate strings using
 
 ```dart
@@ -65,7 +69,7 @@ or use the simpler String extension method
   'Hi'.tr(context)
 ```
 
-#### Note for **iOS**
+### Note on **iOS**
 
 Add supported locales to 
 `ios/Runner/Info.plist` as described [here](https://flutter.dev/docs/development/accessibility-and-localization/internationalization#specifying-supportedlocales).
@@ -79,7 +83,3 @@ Example:
 	<string>nb</string>
 </array>
 ```
-
-## Example
-
-See [example](example)
