@@ -25,19 +25,19 @@ flutter:
     - assets/lang.csv
 ```
 
-The translation file's top row describes language codes, like: **en**, **nb**.
+The CSV top row list supported language codes, like: **en**, **nb**, etc.
 
-The rows below represent words in various languages.
+The rows below represent words in those languages.
 
-CSV translation example:
+##### CSV example file
 
 ```csv
-str, en, nb
+default, en, nb
 Hi, Hi, Hei
 Cheese, Cheese, Ost
 ```
 
-Add `CsvLocalizationsDelegate` to `MaterialApp.localizationsDelegates` and set `MaterialApp.supportedLocales`:
+Add `CsvLocalizationsDelegate` to `MaterialApp` and set `supportedLocales`:
 
 ```
 localizationsDelegates:[
@@ -53,10 +53,16 @@ supportedLocales: [Locale('en'), Locale('nb')],
 
 ```
 
-Now translate strings using:
+Now translate strings using
 
 ```dart
   CsvLocalizations.of(context).tr('Hi')
+```
+
+or use the simpler String extension method
+
+```dart
+  'Hi'.tr(context)
 ```
 
 #### Note for **iOS**

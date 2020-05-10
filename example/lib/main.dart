@@ -57,8 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               CsvLocalizations.of(context).tr('Hi'),
             ),
-            // TODO get value via String extension (need static instance of csv_localizations..)
-            //Text( 'Hi'.tr, ),
+            Text(
+              'Hi'.tr(context),
+            ),
           ],
         ),
       ),

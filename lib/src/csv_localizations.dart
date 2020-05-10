@@ -93,5 +93,6 @@ class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
   bool shouldReload(CsvLocalizationsDelegate old) => false;
 }
 
-/// TODO get value via String extension (need static instance of csv_localizations..)
-extension on String {}
+extension LocalizedString on String {
+  String tr(BuildContext context) => CsvLocalizations.of(context).tr(this);
+}
