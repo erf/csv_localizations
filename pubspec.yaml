@@ -1,0 +1,23 @@
+name: csv_localizations
+description: Localize your app using a single CSV file for all languages.
+version: 0.0.1
+homepage: https://github.com/erf/csv_localizations
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  csv: ^4.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
