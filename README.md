@@ -1,6 +1,6 @@
 # csv_localizations
 
-Localize your app using a [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file for all translations.
+Localize your Flutter app using a single [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file
 
 ## Usage
 
