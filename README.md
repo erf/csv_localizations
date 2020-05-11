@@ -30,7 +30,7 @@ flutter:
 ##### CSV example file
 
 ```csv
-default, en, nb
+key, en, nb
 Hi, Hi, Hei
 Cheese, Cheese, Ost
 ```

@@ -1,6 +1,6 @@
 name: csv_localizations
 description: Localize your Flutter app using a single CSV file for all languages.
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/erf/csv_localizations
 
 environment:

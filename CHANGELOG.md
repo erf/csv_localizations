@@ -1,13 +1,15 @@
-## [0.1.1] - 2020-05-11
+# CHANGELOG
 
+## [0.1.2]
 - update README
 
-## [0.1.0] - 2020-05-11
+## [0.1.1]
+- update README
 
+## [0.1.0]
 - add String extension translate method 'Hi'.tr(context)
 - update README
 
-## [0.0.1] - 2020-05-11
-
+## [0.0.1]
 - initial release
 - localize app using a single csv file

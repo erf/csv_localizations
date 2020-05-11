@@ -58,8 +58,7 @@ class CsvLocalizations {
   String tr(String key) {
     // find translation map given current locale
     final bool containsLocale = _localizedValues.containsKey(_languageCode);
-    assert(containsLocale,
-        'Missing localization for current locale: $_languageCode');
+    assert(containsLocale, 'Missing localization for code: $_languageCode');
     final Map<String, String> translations = _localizedValues[_languageCode];
     // find translated string given translation key
     final bool containsKey = translations.containsKey(key);
