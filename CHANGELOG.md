@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [0.1.5]
+- trim CSV file for leading and trailing spaces
+
 ## [0.1.4]
 - update README
 
