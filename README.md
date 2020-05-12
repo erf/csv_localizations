@@ -29,13 +29,16 @@ flutter:
 
 ##### CSV example file
 
+Top row show supported language codes; rows below show translations
+
 ```csv
 key, en, nb
 Hi, Hi, Hei
 Cheese, Cheese, Ost
+my_img,assets/en.png,assets/nb.png,assets/da.png
 ```
 
-> Top row show supported language codes; rows below show translations
+> Note: keys can point to local assets like images etc.
 
 ### In code
 
@@ -63,10 +66,16 @@ Now translate strings using
   CsvLocalizations.of(context).tr('Hi')
 ```
 
-or use the simpler String extension method
+Or use the simpler String extension method
 
 ```dart
   'Hi'.tr(context)
+```
+
+Or load a localized image
+
+```dart
+  Image.asset('my_img'.tr(context))
 ```
 
 ### Note on **iOS**
@@ -81,5 +90,6 @@ Example:
 <array>
 	<string>en</string>
 	<string>nb</string>
+	<string>da</string>
 </array>
 ```

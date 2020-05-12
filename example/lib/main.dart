@@ -49,16 +49,31 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('csv_localizations'),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               CsvLocalizations.of(context).tr('Hi'),
+              style: TextStyle(
+                fontSize: 24,
+              ),
             ),
             Text(
               'Hi'.tr(context),
+              style: TextStyle(
+                fontSize: 24,
+              ),
+            ),
+            Image.asset(
+              'my_img'.tr(context),
+              width: 64,
+              height: 64,
+              fit: BoxFit.contain,
+              filterQuality: FilterQuality.none,
             ),
           ],
         ),
