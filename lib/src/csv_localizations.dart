@@ -38,6 +38,8 @@ class CsvLocalizations {
     if (_loaded) return this;
     final String cvsDoc = await rootBundle.loadString(assetPath);
     final List<List<dynamic>> rows = const CsvToListConverter().convert(cvsDoc);
+    // remove trailing empty rows
+    rows.removeWhere((row) => row.length == 1 && row.first == '');
     // i could set supported languages to languages, but we need those at startup..
     final List<String> languages = List<String>.from(rows.first);
     //_defaultCode = languages.first;
