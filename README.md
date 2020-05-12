@@ -1,6 +1,8 @@
 # csv_localizations
 
-Localize your Flutter app using a single [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file
+Localize your Flutter app using a single [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file.
+
+A minimal localization package built on `LocalizationsDelegate`.
 
 ## Usage
 
@@ -15,7 +17,7 @@ dependencies:
   csv_localizations:
 ```
 
-### Add CSV asset
+### Add CSV asset file
 
 Add a CSV translation file as an asset and describe it in your `pubspec.yaml`
 
@@ -27,52 +29,58 @@ flutter:
     - assets/lang.csv
 ```
 
-##### CSV example file
+##### CSV example
 
-Top row show supported language codes; rows below show translations
 
 ```csv
 key, en, nb
 Hi, Hi, Hei
 Cheese, Cheese, Ost
-my_img,assets/en.png,assets/nb.png,assets/da.png
+my_img,assets/en.png,assets/nb.png
 ```
 
+> Top row show supported language codes; rows below are localizations. 
+> 
+> Left column are keys for localized values.
+> 
 > Note: keys can point to local assets like images etc.
 
-### In code
+### MaterialApp
 
-Add `CsvLocalizationsDelegate` to `MaterialApp` and set `supportedLocales`
+Add `CsvLocalizationsDelegate` to `MaterialApp` and set `supportedLocales` using
+language codes.
 
 ```
-localizationsDelegates:[
-  ... // global delegates
-  CsvLocalizationsDelegate(
-    CsvLocalizations(
-      assetPath: 'assets/lang.csv',
-      supportedLanguageCodes: ['en', 'nb'],
+MaterialApp(
+  localizationsDelegates: [
+    ... // global delegates
+    CsvLocalizationsDelegate(
+      CsvLocalizations(
+        assetPath: 'assets/lang.csv',
+        supportedLanguageCodes: [ 'en', 'nb', ],
+      ),
     ),
-  ),
-]
-supportedLocales: [Locale('en'), Locale('nb')],
+  ],
+  supportedLocales: [ Locale('en'), Locale('nb'), ],
+}
 
 ```
 
 ### API
 
-Now translate strings using
+Translate strings using
 
 ```dart
   CsvLocalizations.of(context).tr('Hi')
 ```
 
-Or use the simpler String extension method
+or use the simpler String extension method
 
 ```dart
   'Hi'.tr(context)
 ```
 
-Or load a localized image
+Localize an image by pointing to various local assets
 
 ```dart
   Image.asset('my_img'.tr(context))
@@ -80,8 +88,8 @@ Or load a localized image
 
 ### Note on **iOS**
 
-Add supported locales to 
-`ios/Runner/Info.plist` as described [here](https://flutter.dev/docs/development/accessibility-and-localization/internationalization#specifying-supportedlocales).
+Add supported languages to `ios/Runner/Info.plist` as described 
+[here](https://flutter.dev/docs/development/accessibility-and-localization/internationalization#specifying-supportedlocales).
 
 Example:
 
@@ -90,6 +98,5 @@ Example:
 <array>
 	<string>en</string>
 	<string>nb</string>
-	<string>da</string>
 </array>
 ```

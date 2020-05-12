@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [0.1.4]
+- update README
+
 ## [0.1.3]
 - update README with localized image example
 
