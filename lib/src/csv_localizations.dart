@@ -56,7 +56,7 @@ class CsvLocalizations {
   }
 
   /// get translation given a key
-  String tr(String key) {
+  String string(String key) {
     // find translation map given current locale
     final bool containsLocale = _localizedValues.containsKey(_languageCode);
     assert(containsLocale, 'Missing localization for code: $_languageCode');
@@ -91,8 +91,4 @@ class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
 
   @override
   bool shouldReload(CsvLocalizationsDelegate old) => false;
-}
-
-extension LocalizedString on String {
-  String tr(BuildContext context) => CsvLocalizations.of(context).tr(this);
 }

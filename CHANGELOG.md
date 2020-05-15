@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [0.2.0]
+- simplify API to use a single `string` method. We don't want to pollute String with extensions
+methods. Users can add (and name) these themselves as they see fit.
+
 ## [0.1.5]
 - trim CSV file for leading and trailing spaces
 

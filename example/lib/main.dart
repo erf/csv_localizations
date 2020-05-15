@@ -57,19 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              CsvLocalizations.of(context).tr('Hi'),
-              style: TextStyle(
-                fontSize: 24,
-              ),
-            ),
-            Text(
-              'Hi'.tr(context),
+              CsvLocalizations.of(context).string('Hi'),
               style: TextStyle(
                 fontSize: 24,
               ),
             ),
             Image.asset(
-              'my_img'.tr(context),
+              CsvLocalizations.of(context).string('my_img'),
               width: 64,
               height: 64,
               fit: BoxFit.contain,

@@ -1,16 +1,14 @@
 # csv_localizations
 
-Localize your Flutter app using a single [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file.
-
-A minimal localization package built on `LocalizationsDelegate`.
+A minimal [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localization package for Flutter.
 
 ## Usage
 
-See [example](example)
+See [example](example).
 
 ### Install
 
-Add package to your `pubspec.yaml`
+Add to your `pubspec.yaml`
 
 ```yaml
 dependencies:
@@ -19,7 +17,7 @@ dependencies:
 
 ### Add CSV asset file
 
-Add a CSV translation file as an asset and describe it in your `pubspec.yaml`
+Add a CSV file as an asset and describe it in your `pubspec.yaml`
 
 > Tip: Create a Spreadsheet via Google docs, then export as CSV
 
@@ -29,19 +27,15 @@ flutter:
     - assets/lang.csv
 ```
 
-##### CSV example
-
+Example CSV file:
 
 ```csv
 key, en, nb
 Hi, Hi, Hei
-Cheese, Cheese, Ost
 my_img,assets/en.png,assets/nb.png
 ```
 
-> Top row show supported language codes; rows below are localizations. 
-> 
-> Left column are keys for localized values.
+> First row is supported language codes; below are localizations. Left column are keys for localized values to the right.
 > 
 > Note: keys can point to local assets like images etc.
 
@@ -71,19 +65,21 @@ MaterialApp(
 Translate strings using
 
 ```dart
-  CsvLocalizations.of(context).tr('Hi')
-```
-
-or use the simpler String extension method
-
-```dart
-  'Hi'.tr(context)
+CsvLocalizations.of(context).string('Hi')
 ```
 
 Localize an image by pointing to various local assets
 
 ```dart
-  Image.asset('my_img'.tr(context))
+Image.asset(CsvLocalizations.of(context).string('my_img'))
+```
+
+We keep the API simple, but you can easily add an extension method `tr` to `String` like this:
+
+```dart
+extension LocalizedString on String {
+  String tr(BuildContext context) => CsvLocalizations.of(context).string(this);
+}
 ```
 
 ### Note on **iOS**
