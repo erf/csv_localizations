@@ -37,7 +37,7 @@ my_img,assets/en.png,assets/nb.png
 
 > First row is supported language codes; below are localizations. Left column are keys for localized values to the right.
 > 
-> Note: keys can point to local assets like images etc.
+> Tip: keys can point to local assets like images etc.
 
 ### MaterialApp
 
