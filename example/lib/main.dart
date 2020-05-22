@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
             supportedLanguageCodes: [
               'en',
               'nb',
-              'da',
             ],
           ),
         ),
@@ -29,7 +28,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale('en'),
         Locale('nb'),
-        Locale('da'),
       ],
       theme: ThemeData(
         primarySwatch: Colors.blue,
