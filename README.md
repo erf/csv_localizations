@@ -74,7 +74,7 @@ Localize an image by pointing to various local assets
 Image.asset(CsvLocalizations.of(context).string('my_img'))
 ```
 
-We keep the API simple, but you can easily add an extension method `tr` to `String` like this:
+We keep the API simple, but you can easily add an extension method to `String` like this:
 
 ```dart
 extension LocalizedString on String {
