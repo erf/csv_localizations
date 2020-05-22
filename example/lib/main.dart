@@ -52,25 +52,24 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('csv_localizations'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              CsvLocalizations.of(context).string('Hi'),
-              style: TextStyle(
-                fontSize: 24,
-              ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            CsvLocalizations.of(context).string('Hi'),
+            style: TextStyle(
+              fontSize: 24,
             ),
-            Image.asset(
-              CsvLocalizations.of(context).string('my_img'),
-              width: 64,
-              height: 64,
-              fit: BoxFit.contain,
-              filterQuality: FilterQuality.none,
-            ),
-          ],
-        ),
+          ),
+          Image.asset(
+            CsvLocalizations.of(context).string('my_img'),
+            width: 64,
+            height: 64,
+            fit: BoxFit.contain,
+            filterQuality: FilterQuality.none,
+          ),
+        ],
       ),
     );
   }
