@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [0.2.0+2]
+
+- add rationale to README
+
 ## [0.2.0+1]
 
 - tweak example and remove danish
