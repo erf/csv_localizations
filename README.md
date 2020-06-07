@@ -2,7 +2,7 @@
 
 A minimal [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localization package for Flutter.
 
-## Rationale
+## Why
 
 A single CSV file allows you to represent translations for all languages. This makes it easy to store, share and add new translations. 
 

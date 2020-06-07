@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [0.2.0+3]
+
+- update README
+
 ## [0.2.0+2]
 
 - add rationale to README
