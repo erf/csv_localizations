@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [0.3.0]
+- use \n as default eol but replace \r\n with \n before parse
+- improve README 
+- add multiline example
+
 ## [0.2.0+3]
 
 - update README

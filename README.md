@@ -2,11 +2,9 @@
 
 A minimal [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localization package for Flutter.
 
-## Why
+Store translations for multiple languages in a single CSV file.
 
-A single CSV file allows you to represent translations for all languages. This makes it easy to store, share and add new translations. 
-
-For longer, multi-line and complex strings, consider using [toml_localizations](https://github.com/erf/toml_localizations) or [yaml_localizations](https://github.com/erf/yaml_localizations), in addition to this.
+Consider [toml_localizations](https://github.com/erf/toml_localizations) or [yaml_localizations](https://github.com/erf/yaml_localizations) for separate files per language.
 
 ## Usage
 
@@ -33,17 +31,30 @@ flutter:
     - assets/lang.csv
 ```
 
-Example CSV file:
+### Example CSV file
 
 ```csv
-key, en, nb
-Hi, Hi, Hei
+key,en,nb
+Hi,Hi,Hei
 my_img,assets/en.png,assets/nb.png
+Multiline,"This
+  is a multiline 
+string","Denne
+  teksten går over flere 
+linjer"
 ```
 
-> First row is supported language codes; below are localizations. Left column are keys for localized values to the right.
-> 
 > Tip: keys can point to local assets like images etc.
+
+### Format
+
+First row lists supported language codes. 
+
+First column are keys for localized values.
+
+Wrap multiline strings in quotation marks.
+
+We use the [csv](https://pub.dev/packages/csv) package for parsing, but we use `\n` as the default **eol** and replace `\r\n` with `\n` before parsing.
 
 ### MaterialApp
 
@@ -66,18 +77,12 @@ MaterialApp(
 
 ```
 
-### API
+## API
 
 Translate strings using
 
 ```dart
 CsvLocalizations.of(context).string('Hi')
-```
-
-Localize an image by pointing to various local assets
-
-```dart
-Image.asset(CsvLocalizations.of(context).string('my_img'))
 ```
 
 We keep the API simple, but you can easily add an extension method to `String` like this:
@@ -88,7 +93,7 @@ extension LocalizedString on String {
 }
 ```
 
-### Note on **iOS**
+## Note on **iOS**
 
 Add supported languages to `ios/Runner/Info.plist` as described 
 [here](https://flutter.dev/docs/development/accessibility-and-localization/internationalization#specifying-supportedlocales).

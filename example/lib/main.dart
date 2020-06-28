@@ -67,6 +67,12 @@ class _MyHomePageState extends State<MyHomePage> {
             fit: BoxFit.contain,
             filterQuality: FilterQuality.none,
           ),
+          Text(
+            CsvLocalizations.of(context).string('Multiline'),
+            style: TextStyle(
+              fontSize: 24,
+            ),
+          ),
         ],
       ),
     );

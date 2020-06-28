@@ -36,9 +36,10 @@ class CsvLocalizations {
   Future<CsvLocalizations> load(Locale locale) async {
     this._languageCode = locale.languageCode;
     if (_loaded) return this;
-    final String cvsDoc = await rootBundle.loadString(assetPath);
+    String csvDoc = await rootBundle.loadString(assetPath);
+    csvDoc = csvDoc.replaceAll('\r\n', '\n');
     final List<List<dynamic>> rows =
-        const CsvToListConverter().convert(cvsDoc.trim());
+        const CsvToListConverter(eol: '\n').convert(csvDoc.trim());
     // i could set supported languages to languages, but we need those at startup..
     final List<String> languages = List<String>.from(rows.first);
     //_defaultCode = languages.first;

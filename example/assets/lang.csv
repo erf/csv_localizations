@@ -1,3 +1,6 @@
 key,en,nb
 Hi,Hi,Hei
 my_img,assets/en.png,assets/nb.png
+Multiline,"This is a
+  multiline string","Denne teksten går over
+  flere linjer"
