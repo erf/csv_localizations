@@ -83,9 +83,9 @@ Translate strings using
 CsvLocalizations.instance.string('Hi')
 ```
 
-> Note: From version 0.4.0 we use a singleton for the CsvLocalizations instance
+> Note: From version 0.4.0 we use a singleton for the CsvLocalizations instance to avoid the need for a BuildContext
 
-Or using the `String` extension getter `tr` like this:
+Or use the simpler `String` extension getter `tr`
 
 ```dart
 'Hi'.tr
