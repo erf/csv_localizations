@@ -91,6 +91,8 @@ Or use the simpler `String` extension getter `tr`
 'Hi'.tr
 ```
 
+Check if the translation file is loaded using `CsvLocalizations.instance.loaded`. Usually not neccessary, only if used before initializing the global localizationDelegates.
+
 ## Note on **iOS**
 
 Add supported languages to `ios/Runner/Info.plist` as described 
