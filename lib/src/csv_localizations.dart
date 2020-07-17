@@ -10,7 +10,9 @@ class CsvLocalizations {
   /// language code of current locale, set in [load] method
   String _languageCode;
 
-  static final instance = CsvLocalizations();
+  CsvLocalizations._();
+
+  static final instance = CsvLocalizations._();
 
   // default language code ( the first entry in the Csv file )
   // we don't use it now, but we could use it for default values if translations are not present
