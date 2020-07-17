@@ -22,6 +22,8 @@ class CsvLocalizations {
   // true when translations have been loaded from file
   bool _loaded = false;
 
+  bool get loaded => _loaded;
+
   /// first time we call load, we read the csv file and initialize translations
   /// next time we just return this
   /// called by [CsvLocalizationsDelegate]
