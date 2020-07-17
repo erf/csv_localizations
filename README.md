@@ -66,10 +66,8 @@ MaterialApp(
   localizationsDelegates: [
     ... // global delegates
     CsvLocalizationsDelegate(
-      CsvLocalizations(
-        assetPath: 'assets/lang.csv',
-        supportedLanguageCodes: [ 'en', 'nb', ],
-      ),
+      assetPath: 'assets/lang.csv',
+      supportedLanguageCodes: [ 'en', 'nb', ],
     ),
   ],
   supportedLocales: [ Locale('en'), Locale('nb'), ],
@@ -82,15 +80,15 @@ MaterialApp(
 Translate strings using
 
 ```dart
-CsvLocalizations.of(context).string('Hi')
+CsvLocalizations.instance.string('Hi')
 ```
 
-We keep the API simple, but you can easily add an extension method to `String` like this:
+> Note: From version 0.4.0 we use a singleton for the CsvLocalizations instance
+
+Or using the `String` extension getter `tr` like this:
 
 ```dart
-extension LocalizedString on String {
-  String tr(BuildContext context) => CsvLocalizations.of(context).string(this);
-}
+'Hi'.tr
 ```
 
 ## Note on **iOS**

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [0.4.0]
+- added CsvLocalizations.instance to avoid the need for a BuildContext
+- added String extension getter 'tr'
+
 ## [0.3.0]
 - use \n as default eol but replace \r\n with \n before parse
 - improve README 

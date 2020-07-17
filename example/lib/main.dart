@@ -16,13 +16,8 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         CsvLocalizationsDelegate(
-          CsvLocalizations(
-            assetPath: 'assets/lang.csv',
-            supportedLanguageCodes: [
-              'en',
-              'nb',
-            ],
-          ),
+          assetPath: 'assets/lang.csv',
+          supportedLanguageCodes: ['en', 'nb'],
         ),
       ],
       supportedLocales: [
@@ -55,20 +50,20 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            CsvLocalizations.of(context).string('Hi'),
+            'Hi'.tr,
             style: TextStyle(
               fontSize: 24,
             ),
           ),
           Image.asset(
-            CsvLocalizations.of(context).string('my_img'),
+            'my_img'.tr,
             width: 64,
             height: 64,
             fit: BoxFit.contain,
             filterQuality: FilterQuality.none,
           ),
           Text(
-            CsvLocalizations.of(context).string('Multiline'),
+            'Multiline'.tr,
             style: TextStyle(
               fontSize: 24,
             ),

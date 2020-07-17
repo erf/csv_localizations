@@ -1,20 +1,16 @@
 import 'package:csv/csv.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart';
 
 /// store translations per languageCode from a CSV file used by [CsvLocalizationsDelegate]
 class CsvLocalizations {
   /// map of translations per languageCode
   final Map<String, Map<String, String>> _localizedValues = {};
 
-  /// path to CSV translation asset
-  final String assetPath;
-
-  /// supported language codes (can't get from CSV, since we need it on startup)
-  final List<String> supportedLanguageCodes;
-
   /// language code of current locale, set in [load] method
   String _languageCode;
+
+  static final instance = CsvLocalizations();
 
   // default language code ( the first entry in the Csv file )
   // we don't use it now, but we could use it for default values if translations are not present
@@ -24,19 +20,14 @@ class CsvLocalizations {
   // true when translations have been loaded from file
   bool _loaded = false;
 
-  /// initialize with asset path to csv and a list of supported language codes
-  CsvLocalizations({
-    this.assetPath,
-    this.supportedLanguageCodes,
-  });
-
   /// first time we call load, we read the csv file and initialize translations
   /// next time we just return this
   /// called by [CsvLocalizationsDelegate]
-  Future<CsvLocalizations> load(Locale locale) async {
+  Future<CsvLocalizations> load(
+      Locale locale, AssetBundle bundle, String assetPath) async {
     this._languageCode = locale.languageCode;
     if (_loaded) return this;
-    String csvDoc = await rootBundle.loadString(assetPath);
+    String csvDoc = await bundle.loadString(assetPath);
     csvDoc = csvDoc.replaceAll('\r\n', '\n');
     final List<List<dynamic>> rows =
         const CsvToListConverter(eol: '\n').convert(csvDoc.trim());
@@ -68,28 +59,33 @@ class CsvLocalizations {
     final String translatedValue = translations[key];
     return translatedValue;
   }
-
-  /// helper for getting [CsvLocalizations] object
-  static CsvLocalizations of(BuildContext context) =>
-      Localizations.of<CsvLocalizations>(context, CsvLocalizations);
-
-  // helper for getting supported language codes from CsvLocalizationsDelegate
-  bool isSupported(Locale locale) =>
-      supportedLanguageCodes.contains(locale.languageCode);
 }
 
 /// [CsvLocalizationsDelegate] add this to `MaterialApp.localizationsDelegates`
 class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
-  final CsvLocalizations localization;
+  /// path to CSV translation asset
+  final String assetPath;
 
-  const CsvLocalizationsDelegate(this.localization);
+  /// supported language codes (can't get from CSV, since we need it on startup)
+  final List<String> supportedLanguageCodes;
+
+  const CsvLocalizationsDelegate({
+    @required this.assetPath,
+    @required this.supportedLanguageCodes,
+  });
 
   @override
-  bool isSupported(Locale locale) => localization.isSupported(locale);
+  bool isSupported(Locale locale) {
+    return supportedLanguageCodes.contains(locale.languageCode);
+  }
 
   @override
-  Future<CsvLocalizations> load(Locale locale) => localization.load(locale);
+  Future<CsvLocalizations> load(Locale locale) {
+    return CsvLocalizations.instance.load(locale, rootBundle, assetPath);
+  }
 
   @override
-  bool shouldReload(CsvLocalizationsDelegate old) => false;
+  bool shouldReload(CsvLocalizationsDelegate old) {
+    return false;
+  }
 }
