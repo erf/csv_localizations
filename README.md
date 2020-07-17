@@ -83,7 +83,7 @@ Translate strings using
 CsvLocalizations.instance.string('Hi')
 ```
 
-> Note: From version 0.4.0 we use a singleton for the CsvLocalizations instance to avoid the need for a BuildContext
+> Note: From version 0.4.0 we use a singleton for CsvLocalizations to avoid the need for a BuildContext
 
 Or use the simpler `String` extension getter `tr`
 
