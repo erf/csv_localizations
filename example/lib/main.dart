@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:csv_localizations/csv_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'string_ext.dart';
+
 void main() {
   runApp(MyApp());
 }

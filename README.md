@@ -83,15 +83,19 @@ Translate strings using
 CsvLocalizations.instance.string('Hi')
 ```
 
-> Note: From version 0.4.0 we use a singleton for CsvLocalizations to avoid the need for a BuildContext
-
-Or use the simpler `String` extension getter `tr`
+We keep the API simple, but you can easily add an extension method to `String` like this:
 
 ```dart
-'Hi'.tr
+extension LocalizedString on String {
+  String tr(BuildContext context) => CsvLocalizations.instance.string(this);
+}
 ```
 
 Check if the translation file is loaded using `CsvLocalizations.instance.loaded`. Usually not neccessary, only if used before initializing the global localizationDelegates.
+
+> From version 1.0.0 we remove the String extension for `tr`
+
+> From version 0.4.0 we use a singleton for CsvLocalizations
 
 ## Note on **iOS**
 
