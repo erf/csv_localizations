@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.5.0]
+Decided to simplify the API again by removing the string extenstion `tr`.
+
+This makes more sense if we want to use multiple localization libraries.
+
+Moved `string_ext` to the `example` folder if you want to use it.
+
 ## [0.4.0]
 - added CsvLocalizations.instance to avoid the need for a BuildContext
 - added String extension getter 'tr'
