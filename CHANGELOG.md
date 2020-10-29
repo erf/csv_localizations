@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [0.6.0]
+I don't manipulate the CSV file anymore, but you can set the prefered `eol` now
+which defaults to `\n`.
+
 ## [0.5.0]
 Decided to simplify the API again by removing the string extenstion `tr`.
 

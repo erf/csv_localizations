@@ -6,6 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'string_ext.dart';
 
 void main() {
+
+  CsvLocalizations.instance.eol = '\n';
+
   runApp(MyApp());
 }
 

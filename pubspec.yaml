@@ -1,6 +1,6 @@
 name: csv_localizations
-description: CSV localization for Flutter built on LocalizationsDelegate.
-version: 0.5.0
+description: CSV localization lib built on LocalizationsDelegate
+version: 0.6.0
 homepage: https://github.com/erf/csv_localizations
 
 environment:

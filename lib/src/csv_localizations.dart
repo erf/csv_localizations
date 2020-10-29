@@ -2,7 +2,7 @@ import 'package:csv/csv.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 
-/// store translations per languageCode from a CSV file used by [CsvLocalizationsDelegate]
+/// Store translations per languageCode from a CSV file used by [CsvLocalizationsDelegate]
 class CsvLocalizations {
   /// map of translations per languageCode
   final Map<String, Map<String, String>> _localizedValues = {};
@@ -14,30 +14,23 @@ class CsvLocalizations {
 
   static final instance = CsvLocalizations._();
 
-  // default language code ( the first entry in the Csv file )
-  // we don't use it now, but we could use it for default values if translations are not present
-  // but i think it's good to NOT use it, so we will alert of missing translations
-  //String _defaultCode;
-
   // true when translations have been loaded from file
   bool _loaded = false;
 
   bool get loaded => _loaded;
 
+  /// you can configure this before [load] is called
+  String eol = '\n';
+
   /// first time we call load, we read the csv file and initialize translations
   /// next time we just return this
   /// called by [CsvLocalizationsDelegate]
-  Future<CsvLocalizations> load(
-      Locale locale, AssetBundle bundle, String assetPath) async {
+  Future<CsvLocalizations> load(Locale locale, AssetBundle bundle, String assetPath) async {
     this._languageCode = locale.languageCode;
     if (_loaded) return this;
-    String csvDoc = await bundle.loadString(assetPath);
-    csvDoc = csvDoc.replaceAll('\r\n', '\n');
-    final List<List<dynamic>> rows =
-        const CsvToListConverter(eol: '\n').convert(csvDoc.trim());
-    // i could set supported languages to languages, but we need those at startup..
-    final List<String> languages = List<String>.from(rows.first);
-    //_defaultCode = languages.first;
+    final csvDoc = await bundle.loadString(assetPath);
+    final rows = CsvToListConverter(eol: eol).convert(csvDoc);
+    final languages = List<String>.from(rows.first);
     _localizedValues.addEntries(languages.map((e) => MapEntry(e, {})));
     for (int i = 0; i < languages.length; i++) {
       final String languageCode = languages[i];
