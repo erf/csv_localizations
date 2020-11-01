@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [0.7.0]
+- update csv dependency to 4.1.0
+- update README
+
 ## [0.6.0]
 I don't manipulate the CSV file anymore, but you can set the prefered `eol` now
 which defaults to `\n`.
