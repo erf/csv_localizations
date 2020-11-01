@@ -1,10 +1,13 @@
 # csv_localizations
 
-A minimal [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localization package for Flutter.
+[CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localization package
+for Flutter.
 
 Store translations for multiple languages in a single CSV file.
 
-Consider [toml_localizations](https://github.com/erf/toml_localizations) or [yaml_localizations](https://github.com/erf/yaml_localizations) for separate files per language.
+Consider using [toml_localizations](https://github.com/erf/toml_localizations)
+or [yaml_localizations](https://github.com/erf/yaml_localizations) for separate
+files per language.
 
 ## Usage
 
@@ -23,15 +26,13 @@ dependencies:
 
 Add a CSV file as an asset and describe it in your `pubspec.yaml`
 
-> Tip: Create a Spreadsheet via Google docs, then export as CSV
-
 ```yaml
 flutter:
   assets:
-    - assets/lang.csv
+    - assets/translations.csv
 ```
 
-### Example CSV file
+#### Example CSV file
 
 ```csv
 key,en,nb
@@ -48,13 +49,40 @@ linjer"
 
 ### Format
 
-First row lists supported language codes. 
+| key  | en   | nb     |
+|------|------|--------|
+| Hi   | Hi   | Hei    |
+| Bike | Bike | Sykkel |
+| Dog  | Dog  | Hund   |
+
+First row lists supported language codes.
 
 First column are keys for localized values.
 
-Wrap multiline strings in quotation marks.
+You can wrap multiline strings in quotation marks.
 
-We use the [csv](https://pub.dev/packages/csv) package for parsing, but we use `\n` as the default **eol** and replace `\r\n` with `\n` before parsing.
+## API
+
+Translate strings using
+
+```dart
+CsvLocalizations.instance.string('Hi')
+```
+
+We keep the API simple, but you can easily add an extension method to `String`
+like this:
+
+```dart
+extension LocalizedString on String {
+  String tr(BuildContext context) => CsvLocalizations.instance.string(this);
+}
+```
+
+We use `\n` as the default **eol** (end-of-line) char, but you can set this via
+`CsvLocalizations.instance.eol`.
+
+Check if the translation file is loaded using `CsvLocalizations.instance.loaded`.
+Only necessary if called before initializing the global localizationDelegates.
 
 ### MaterialApp
 
@@ -75,31 +103,9 @@ MaterialApp(
 
 ```
 
-## API
-
-Translate strings using
-
-```dart
-CsvLocalizations.instance.string('Hi')
-```
-
-We keep the API simple, but you can easily add an extension method to `String` like this:
-
-```dart
-extension LocalizedString on String {
-  String tr(BuildContext context) => CsvLocalizations.instance.string(this);
-}
-```
-
-Check if the translation file is loaded using `CsvLocalizations.instance.loaded`. Usually not neccessary, only if used before initializing the global localizationDelegates.
-
-> From version 1.0.0 we remove the String extension for `tr`
-
-> From version 0.4.0 we use a singleton for CsvLocalizations
-
 ## Note on **iOS**
 
-Add supported languages to `ios/Runner/Info.plist` as described 
+Add supported languages to `ios/Runner/Info.plist` as described
 [here](https://flutter.dev/docs/development/accessibility-and-localization/internationalization#specifying-supportedlocales).
 
 Example:
