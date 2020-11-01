@@ -25,7 +25,8 @@ class CsvLocalizations {
   /// first time we call load, we read the csv file and initialize translations
   /// next time we just return this
   /// called by [CsvLocalizationsDelegate]
-  Future<CsvLocalizations> load(Locale locale, AssetBundle bundle, String assetPath) async {
+  Future<CsvLocalizations> load(
+      Locale locale, AssetBundle bundle, String assetPath) async {
     this._languageCode = locale.languageCode;
     if (_loaded) return this;
     final csvDoc = await bundle.loadString(assetPath);
