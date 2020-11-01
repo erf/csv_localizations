@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         CsvLocalizationsDelegate(
-          assetPath: 'assets/lang.csv',
+          assetPath: 'assets/translations.csv',
           supportedLanguageCodes: ['en', 'nb'],
         ),
       ],
