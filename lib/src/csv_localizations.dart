@@ -47,15 +47,12 @@ class CsvLocalizations {
 
   /// get translation given a key
   String string(String key) {
-    // find translation map given current locale
-    final bool containsLocale = _localizedValues.containsKey(_languageCode);
+    final containsLocale = _localizedValues.containsKey(_languageCode);
     assert(containsLocale, 'Missing localization for code: $_languageCode');
-    final Map<String, String> translations = _localizedValues[_languageCode];
-    // find translated string given translation key
-    final bool containsKey = translations.containsKey(key);
+    final translations = _localizedValues[_languageCode];
+    final containsKey = translations.containsKey(key);
     assert(containsKey, 'Missing localization for translation key: $key');
-    final String translatedValue = translations[key];
-    return translatedValue;
+    return translations[key];
   }
 }
 
@@ -64,26 +61,15 @@ class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
   /// path to CSV translation asset
   final String assetPath;
 
-  /// supported language codes (can't get from CSV, since we need it on startup)
-  final List<String> supportedLanguageCodes;
-
-  const CsvLocalizationsDelegate({
-    @required this.assetPath,
-    @required this.supportedLanguageCodes,
-  });
+  const CsvLocalizationsDelegate(this.assetPath);
 
   @override
-  bool isSupported(Locale locale) {
-    return supportedLanguageCodes.contains(locale.languageCode);
-  }
+  bool isSupported(Locale locale) => true;
 
   @override
-  Future<CsvLocalizations> load(Locale locale) {
-    return CsvLocalizations.instance.load(locale, rootBundle, assetPath);
-  }
+  Future<CsvLocalizations> load(Locale locale) =>
+      CsvLocalizations.instance.load(locale, rootBundle, assetPath);
 
   @override
-  bool shouldReload(CsvLocalizationsDelegate old) {
-    return false;
-  }
+  bool shouldReload(CsvLocalizationsDelegate old) => false;
 }

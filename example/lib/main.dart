@@ -19,10 +19,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
-        CsvLocalizationsDelegate(
-          assetPath: 'assets/translations.csv',
-          supportedLanguageCodes: ['en', 'nb'],
-        ),
+        CsvLocalizationsDelegate('assets/translations.csv'),
       ],
       supportedLocales: [
         Locale('en'),

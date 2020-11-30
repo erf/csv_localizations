@@ -93,10 +93,7 @@ language codes.
 MaterialApp(
   localizationsDelegates: [
     ... // global delegates
-    CsvLocalizationsDelegate(
-      assetPath: 'assets/lang.csv',
-      supportedLanguageCodes: [ 'en', 'nb', ],
-    ),
+    CsvLocalizationsDelegate('assets/lang.csv'),
   ],
   supportedLocales: [ Locale('en'), Locale('nb'), ],
 }

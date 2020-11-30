@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [0.8.0]
+- remove the need to set supportedLanguageCodes
+
 ## [0.7.0]
 - update csv dependency to 4.1.0
 - update README
