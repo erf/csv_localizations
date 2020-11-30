@@ -49,7 +49,7 @@ Multiline,"This is a
 
 ### Format
 
-| key  | en-UK | en   | nb     |
+| key  | en-GB | en   | nb     |
 |------|-------|------|--------|
 | Hi   | Hi    | Hi   | Hei    |
 | Bike | Bike  | Bike | Sykkel |
