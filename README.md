@@ -22,9 +22,9 @@ dependencies:
   csv_localizations:
 ```
 
-### Add CSV asset file
+### Add a single CSV asset file
 
-Add a CSV file as an asset and describe it in your `pubspec.yaml`
+Add a single CSV file as an asset and describe it in your `pubspec.yaml`
 
 ```yaml
 flutter:
@@ -50,7 +50,7 @@ Multiline,"This is a
 ### Format
 
 | key  | en-UK | en   | nb     |
-|------|--------------|--------|
+|------|-------|------|--------|
 | Hi   | Hi    | Hi   | Hei    |
 | Bike | Bike  | Bike | Sykkel |
 | Dog  | Dog   | Dog  | Hund   |
