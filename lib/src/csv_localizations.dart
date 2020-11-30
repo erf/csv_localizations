@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 /// Store translations per languageCode from a CSV file used by [CsvLocalizationsDelegate]
 class CsvLocalizations {
   /// map of translations per languageCode
-  final Map<String, Map<String, String>> _localizedValues = {};
+  final Map<String, Map<String, String>> _translationsMap = {};
 
-  /// language code of current locale, set in [load] method
-  String _languageCode;
+  /// a hash key of language / country code used for [_translationsMap]
+  String _codeKey;
 
   CsvLocalizations._();
 
@@ -17,28 +17,39 @@ class CsvLocalizations {
   // true when translations have been loaded from file
   bool _loaded = false;
 
+  /// true if csv file have been loaded
   bool get loaded => _loaded;
 
-  /// you can configure this before [load] is called
+  /// configure eol before [load]
   String eol = '\n';
 
-  /// first time we call load, we read the csv file and initialize translations
-  /// next time we just return this
-  /// called by [CsvLocalizationsDelegate]
+  /// read csv file and initialize translations once
   Future<CsvLocalizations> load(
       Locale locale, AssetBundle bundle, String assetPath) async {
-    this._languageCode = locale.languageCode;
+    final languageCode = locale.languageCode;
+    final countryCode = locale.countryCode;
+
+    assert(languageCode != null);
+    assert(languageCode.isNotEmpty);
+
+    if (countryCode != null && countryCode.isNotEmpty) {
+      _codeKey = '$languageCode-$countryCode';
+    } else {
+      _codeKey = '$languageCode';
+    }
+
     if (_loaded) return this;
+
     final csvDoc = await bundle.loadString(assetPath);
     final rows = CsvToListConverter(eol: eol).convert(csvDoc);
     final languages = List<String>.from(rows.first);
-    _localizedValues.addEntries(languages.map((e) => MapEntry(e, {})));
+    _translationsMap.addEntries(languages.map((e) => MapEntry(e, {})));
     for (int i = 0; i < languages.length; i++) {
       final String languageCode = languages[i];
       rows.forEach((row) {
         final String key = row.first;
         final String value = row[i];
-        _localizedValues[languageCode][key] = value;
+        _translationsMap[languageCode][key] = value;
       });
     }
     _loaded = true;
@@ -47,9 +58,9 @@ class CsvLocalizations {
 
   /// get translation given a key
   String string(String key) {
-    final containsLocale = _localizedValues.containsKey(_languageCode);
-    assert(containsLocale, 'Missing localization for code: $_languageCode');
-    final translations = _localizedValues[_languageCode];
+    final containsLocale = _translationsMap.containsKey(_codeKey);
+    assert(containsLocale, 'Missing localization for code: $_codeKey');
+    final translations = _translationsMap[_codeKey];
     final containsKey = translations.containsKey(key);
     assert(containsKey, 'Missing localization for translation key: $key');
     return translations[key];
@@ -58,17 +69,16 @@ class CsvLocalizations {
 
 /// [CsvLocalizationsDelegate] add this to `MaterialApp.localizationsDelegates`
 class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
-  /// path to CSV translation asset
-  final String assetPath;
+  final String csvPath;
 
-  const CsvLocalizationsDelegate(this.assetPath);
+  const CsvLocalizationsDelegate(this.csvPath);
 
   @override
   bool isSupported(Locale locale) => true;
 
   @override
   Future<CsvLocalizations> load(Locale locale) =>
-      CsvLocalizations.instance.load(locale, rootBundle, assetPath);
+      CsvLocalizations.instance.load(locale, rootBundle, csvPath);
 
   @override
   bool shouldReload(CsvLocalizationsDelegate old) => false;

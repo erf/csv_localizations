@@ -35,27 +35,27 @@ flutter:
 #### Example CSV file
 
 ```csv
-key,en,nb
-Hi,Hi,Hei
-my_img,assets/en.png,assets/nb.png
-Multiline,"This
-  is a multiline 
-string","Denne
-  teksten går over flere 
-linjer"
+key,en,nb,en-GB,en-US
+Hi,Hi,Hei,Hi GB,Hi US
+my_img,assets/en.png,assets/nb.png,assets/en.png,assets/en.png
+Multiline,"This is a
+  multiline string","Denne teksten går over
+  flere linjer","This is a
+  multiline string","This is a
+  multiline string"
 ```
 
 > Tip: keys can point to local assets like images etc.
 
 ### Format
 
-| key  | en   | nb     |
-|------|------|--------|
-| Hi   | Hi   | Hei    |
-| Bike | Bike | Sykkel |
-| Dog  | Dog  | Hund   |
+| key  | en-UK | en   | nb     |
+|------|--------------|--------|
+| Hi   | Hi    | Hi   | Hei    |
+| Bike | Bike  | Bike | Sykkel |
+| Dog  | Dog   | Dog  | Hund   |
 
-First row lists supported language codes.
+First row lists supported language/country codes.
 
 First column are keys for localized values.
 
@@ -93,9 +93,14 @@ language codes.
 MaterialApp(
   localizationsDelegates: [
     ... // global delegates
-    CsvLocalizationsDelegate('assets/lang.csv'),
+    CsvLocalizationsDelegate('assets/translations.csv'),
   ],
-  supportedLocales: [ Locale('en'), Locale('nb'), ],
+  supportedLocales: [
+    Locale('en', 'GB'),
+    Locale('en', 'US'),
+    Locale('en'),
+    Locale('nb'),
+  ],
 }
 
 ```
@@ -111,6 +116,8 @@ Example:
 <key>CFBundleLocalizations</key>
 <array>
 	<string>en</string>
+	<string>en-US</string>
+	<string>en-GB</string>
 	<string>nb</string>
 </array>
 ```

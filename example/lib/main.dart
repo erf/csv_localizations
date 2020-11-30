@@ -22,6 +22,8 @@ class MyApp extends StatelessWidget {
         CsvLocalizationsDelegate('assets/translations.csv'),
       ],
       supportedLocales: [
+        Locale('en', 'GB'),
+        Locale('en', 'US'),
         Locale('en'),
         Locale('nb'),
       ],

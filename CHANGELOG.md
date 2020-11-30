@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## [0.8.0]
+- support country codes
 - remove the need to set supportedLanguageCodes
 
 ## [0.7.0]

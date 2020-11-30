@@ -1,6 +1,8 @@
-key,en,nb
-Hi,Hi,Hei
-my_img,assets/en.png,assets/nb.png
+key,en,nb,en-GB,en-US
+Hi,Hi,Hei,Hi GB,Hi US
+my_img,assets/en.png,assets/nb.png,assets/en.png,assets/en.png
 Multiline,"This is a
   multiline string","Denne teksten går over
-  flere linjer"
+  flere linjer","This is a
+  multiline string","This is a
+  multiline string"
