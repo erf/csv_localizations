@@ -1,6 +1,6 @@
 # csv_localizations
 
-[CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localization package
+A minimal [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localization package
 for Flutter.
 
 Store translations for multiple languages in a single CSV file.
