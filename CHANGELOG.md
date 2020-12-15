@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [0.8.0+1]
+- improve description (and pub convention score..)
+
 ## [0.8.0]
 - support country codes
 - remove the need to set supportedLanguageCodes
