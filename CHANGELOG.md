@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [0.9.0-nullsafety.0] - 2 feb 2021
+- updated csv package and migrated to nullsafety
+
 ## [0.8.0+1]
 - improve description (and pub convention score..)
 

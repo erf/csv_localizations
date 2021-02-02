@@ -8,7 +8,7 @@ class CsvLocalizations {
   final Map<String, Map<String, String>> _translationsMap = {};
 
   /// a hash key of language / country code used for [_translationsMap]
-  String _codeKey;
+  late String _codeKey;
 
   CsvLocalizations._();
 
@@ -29,9 +29,6 @@ class CsvLocalizations {
     final languageCode = locale.languageCode;
     final countryCode = locale.countryCode;
 
-    assert(languageCode != null);
-    assert(languageCode.isNotEmpty);
-
     if (countryCode != null && countryCode.isNotEmpty) {
       _codeKey = '$languageCode-$countryCode';
     } else {
@@ -49,7 +46,7 @@ class CsvLocalizations {
       rows.forEach((row) {
         final String key = row.first;
         final String value = row[i];
-        _translationsMap[languageCode][key] = value;
+        _translationsMap[languageCode]![key] = value;
       });
     }
     _loaded = true;
@@ -61,9 +58,9 @@ class CsvLocalizations {
     final containsLocale = _translationsMap.containsKey(_codeKey);
     assert(containsLocale, 'Missing localization for code: $_codeKey');
     final translations = _translationsMap[_codeKey];
-    final containsKey = translations.containsKey(key);
+    final containsKey = translations!.containsKey(key);
     assert(containsKey, 'Missing localization for translation key: $key');
-    return translations[key];
+    return translations[key]!;
   }
 }
 
