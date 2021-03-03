@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.0.0] - 3 march 2021
+- stable null-safety release !
+- added widget tests
+- pass optional asset bundle
+
 ## [0.9.0-nullsafety.0] - 2 feb 2021
 - updated csv package and migrated to nullsafety
 

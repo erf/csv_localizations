@@ -67,15 +67,20 @@ class CsvLocalizations {
 /// [CsvLocalizationsDelegate] add this to `MaterialApp.localizationsDelegates`
 class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
   final String csvPath;
+  final AssetBundle? assetBundle;
 
-  const CsvLocalizationsDelegate(this.csvPath);
+  const CsvLocalizationsDelegate(this.csvPath, [this.assetBundle]);
 
   @override
   bool isSupported(Locale locale) => true;
 
   @override
   Future<CsvLocalizations> load(Locale locale) =>
-      CsvLocalizations.instance.load(locale, rootBundle, csvPath);
+      CsvLocalizations.instance.load(
+        locale,
+        assetBundle ?? rootBundle,
+        csvPath,
+      );
 
   @override
   bool shouldReload(CsvLocalizationsDelegate old) => false;
