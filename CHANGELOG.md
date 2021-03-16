@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [1.2.0] - 16 march 2021
+- change min Dart version: 2.12.0-0 -> 2.12.0
+
 ## [1.1.0] - 16 march 2021
 - update csv to 5.0.0
 
