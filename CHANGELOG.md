@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [1.1.0] - 16 march 2021
+- update csv to 5.0.0
+
 ## [1.0.0] - 3 march 2021
 - stable null-safety release !
 - added widget tests
