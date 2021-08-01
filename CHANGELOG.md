@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [1.2.0+1] - 1 aug 2021
+- simplify README.md
+
 ## [1.2.0] - 16 march 2021
 - change min Dart version: 2.12.0-0 -> 2.12.0
 

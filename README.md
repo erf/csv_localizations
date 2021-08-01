@@ -3,11 +3,7 @@
 A minimal [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localization package
 for Flutter.
 
-Store translations for multiple languages in a single CSV file.
-
-Consider using [toml_localizations](https://github.com/erf/toml_localizations)
-or [yaml_localizations](https://github.com/erf/yaml_localizations) for separate
-files per language.
+Store translations for multiple languages in a single CSV file. One language per column. One translation per row.
 
 ## Usage
 
