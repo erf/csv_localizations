@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [1.3.0] - 2 dec 2021
+- update csv package to 5.0.1
+
 ## [1.2.0+1] - 1 aug 2021
 - simplify README.md
 
