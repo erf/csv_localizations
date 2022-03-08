@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -35,10 +34,9 @@ Widget buildTestWidgetWithLocale(Locale locale) {
         'assets/translations.csv',
         TestAssetBundle(),
       ),
-      GlobalWidgetsLocalizations.delegate,
-      GlobalMaterialLocalizations.delegate,
+      ...GlobalMaterialLocalizations.delegates,
     ],
-    supportedLocales: [
+    supportedLocales: const [
       Locale('en'),
       Locale('en', 'US'),
       Locale('nb'),
