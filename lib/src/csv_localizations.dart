@@ -43,11 +43,11 @@ class CsvLocalizations {
     _translationsMap.addEntries(languages.map((e) => MapEntry(e, {})));
     for (int i = 0; i < languages.length; i++) {
       final String languageCode = languages[i];
-      rows.forEach((row) {
+      for (final List row in rows) {
         final String key = row.first;
         final String value = row[i];
         _translationsMap[languageCode]![key] = value;
-      });
+      }
     }
     _loaded = true;
     return this;
