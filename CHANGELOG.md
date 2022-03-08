@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.4.0] - 8 mar 2022
+- fix tests by adding GlobalMaterialLocalizations.delegates
+- add lints
+- replace forEach with for loop
+- use const 
+- don't interpolate string
+
 ## [1.3.0] - 2 dec 2021
 - update csv package to 5.0.1
 
