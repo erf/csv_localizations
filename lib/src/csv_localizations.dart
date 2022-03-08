@@ -32,7 +32,7 @@ class CsvLocalizations {
     if (countryCode != null && countryCode.isNotEmpty) {
       _codeKey = '$languageCode-$countryCode';
     } else {
-      _codeKey = '$languageCode';
+      _codeKey = languageCode;
     }
 
     if (_loaded) return this;
