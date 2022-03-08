@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:csv_localizations/csv_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -8,20 +7,22 @@ import 'string_ext.dart';
 void main() {
   CsvLocalizations.instance.eol = '\n';
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         CsvLocalizationsDelegate('assets/translations.csv'),
       ],
-      supportedLocales: [
+      supportedLocales: const [
         Locale('en', 'GB'),
         Locale('en', 'US'),
         Locale('en'),
@@ -31,12 +32,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -46,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('csv_localizations'),
+        title: const Text('csv_localizations'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -54,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Text(
             'Hi'.tr,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
             ),
           ),
@@ -67,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Text(
             'Multiline'.tr,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
             ),
           ),
