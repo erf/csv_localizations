@@ -25,7 +25,10 @@ class CsvLocalizations {
 
   /// read csv file and initialize translations once
   Future<CsvLocalizations> load(
-      Locale locale, AssetBundle bundle, String assetPath) async {
+    Locale locale,
+    AssetBundle bundle,
+    String assetPath,
+  ) async {
     final languageCode = locale.languageCode;
     final countryCode = locale.countryCode;
 
