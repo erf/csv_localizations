@@ -52,28 +52,30 @@ Widget buildTestWidgetWithLocale(Locale locale) {
 
 void main() {
   testWidgets('MyTestApp find [en] text', (WidgetTester tester) async {
-    await tester.pumpWidget(buildTestWidgetWithLocale(Locale('en')));
+    await tester.pumpWidget(buildTestWidgetWithLocale(const Locale('en')));
     await tester.pump();
     final hiFinder = find.text('Hi');
     expect(hiFinder, findsOneWidget);
   });
 
   testWidgets('MyTestApp find [en-US] text', (WidgetTester tester) async {
-    await tester.pumpWidget(buildTestWidgetWithLocale(Locale('en', 'US')));
+    await tester
+        .pumpWidget(buildTestWidgetWithLocale(const Locale('en', 'US')));
     await tester.pump();
     final hiFinder = find.text('Hi US');
     expect(hiFinder, findsOneWidget);
   });
 
   testWidgets('MyTestApp find [nb] text', (WidgetTester tester) async {
-    await tester.pumpWidget(buildTestWidgetWithLocale(Locale('nb')));
+    await tester.pumpWidget(buildTestWidgetWithLocale(const Locale('nb')));
     await tester.pump();
     final hiFinder = find.text('Hei');
     expect(hiFinder, findsOneWidget);
   });
 
   testWidgets('MyTestApp find [nb-NO] text', (WidgetTester tester) async {
-    await tester.pumpWidget(buildTestWidgetWithLocale(Locale('nb', 'NO')));
+    await tester
+        .pumpWidget(buildTestWidgetWithLocale(const Locale('nb', 'NO')));
     await tester.pump();
     final hiFinder = find.text('Hei NO');
     expect(hiFinder, findsOneWidget);
