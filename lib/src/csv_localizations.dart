@@ -2,8 +2,6 @@ import 'package:csv/csv.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 
-import 'locale_ext.dart';
-
 /// Store translations per languageCode from a CSV file used by [CsvLocalizationsDelegate]
 class CsvLocalizations {
   /// map of translations per languageCode
@@ -31,7 +29,7 @@ class CsvLocalizations {
     AssetBundle bundle,
     String assetPath,
   ) async {
-    _codeKey = locale.codeKey;
+    _codeKey = locale.toLanguageTag();
 
     if (_loaded) return this;
 

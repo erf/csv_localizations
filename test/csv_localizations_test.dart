@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:csv_localizations/src/locale_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -83,12 +82,12 @@ void main() {
   });
 
   test('Locale get codeKey from languageCode', () {
-    expect(const Locale('en').codeKey, 'en');
-    expect(const Locale('nb').codeKey, 'nb');
+    expect(const Locale('en').toLanguageTag(), 'en');
+    expect(const Locale('nb').toLanguageTag(), 'nb');
   });
 
   test('Locale get codeKey from languageCode and country', () {
-    expect(const Locale('en', 'US').codeKey, 'en-US');
-    expect(const Locale('en', 'GB').codeKey, 'en-GB');
+    expect(const Locale('en', 'US').toLanguageTag(), 'en-US');
+    expect(const Locale('en', 'GB').toLanguageTag(), 'en-GB');
   });
 }
