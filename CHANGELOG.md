@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.5.0] - 5 may 2022
+- API: remove loaded
+- use Locale.toLanguageTag to build key
+- improve DOCS
+
 ## [1.4.0] - 8 mar 2022
 - fix tests by adding GlobalMaterialLocalizations.delegates
 - add lints
