@@ -15,12 +15,6 @@ class CsvLocalizations {
 
   static final instance = CsvLocalizations._();
 
-  // true when translations have been loaded from file
-  bool _loaded = false;
-
-  /// true if csv file have been loaded
-  bool get loaded => _loaded;
-
   /// configure eol before [load]
   String eol = '\n';
 
@@ -31,9 +25,6 @@ class CsvLocalizations {
     String path,
   ) async {
     _langTag = locale.toLanguageTag();
-
-    if (_loaded) return this;
-
     final csvDoc = await bundle.loadString(path);
     final rows = CsvToListConverter(eol: eol).convert(csvDoc);
     final languages = List<String>.from(rows.first);
@@ -46,7 +37,6 @@ class CsvLocalizations {
         _translationsMap[languageCode]![key] = value;
       }
     }
-    _loaded = true;
     return this;
   }
 
