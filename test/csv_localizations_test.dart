@@ -25,15 +25,15 @@ class TestAssetBundle extends CachingAssetBundle {
   }
 }
 
-Widget buildTestWidgetWithLocale(Locale locale) {
+Widget buildTestWidgetWithLocale(
+  Locale locale,
+  CsvLocalizationsDelegate csvLocalizationsDelegate,
+) {
   return MaterialApp(
     locale: locale,
     localizationsDelegates: [
-      CsvLocalizationsDelegate(
-        'assets/translations.csv',
-        TestAssetBundle(),
-      ),
       ...GlobalMaterialLocalizations.delegates,
+      csvLocalizationsDelegate,
     ],
     supportedLocales: const [
       Locale('en'),
@@ -49,35 +49,52 @@ Widget buildTestWidgetWithLocale(Locale locale) {
   );
 }
 
+// get csv localizations
+CsvLocalizationsDelegate csvTestDelgate() {
+  return CsvLocalizationsDelegate('assets/translations.csv', TestAssetBundle());
+}
+
 void main() {
   testWidgets('MyTestApp find [en] text', (WidgetTester tester) async {
-    await tester.pumpWidget(buildTestWidgetWithLocale(const Locale('en')));
+    await tester.pumpWidget(
+        buildTestWidgetWithLocale(const Locale('en'), csvTestDelgate()));
     await tester.pump();
     final hiFinder = find.text('Hi');
     expect(hiFinder, findsOneWidget);
   });
 
   testWidgets('MyTestApp find [en-US] text', (WidgetTester tester) async {
-    await tester
-        .pumpWidget(buildTestWidgetWithLocale(const Locale('en', 'US')));
+    await tester.pumpWidget(
+        buildTestWidgetWithLocale(const Locale('en', 'US'), csvTestDelgate()));
     await tester.pump();
     final hiFinder = find.text('Hi US');
     expect(hiFinder, findsOneWidget);
   });
 
   testWidgets('MyTestApp find [nb] text', (WidgetTester tester) async {
-    await tester.pumpWidget(buildTestWidgetWithLocale(const Locale('nb')));
+    await tester.pumpWidget(
+        buildTestWidgetWithLocale(const Locale('nb'), csvTestDelgate()));
     await tester.pump();
     final hiFinder = find.text('Hei');
     expect(hiFinder, findsOneWidget);
   });
 
   testWidgets('MyTestApp find [nb-NO] text', (WidgetTester tester) async {
-    await tester
-        .pumpWidget(buildTestWidgetWithLocale(const Locale('nb', 'NO')));
+    await tester.pumpWidget(
+        buildTestWidgetWithLocale(const Locale('nb', 'NO'), csvTestDelgate()));
     await tester.pump();
     final hiFinder = find.text('Hei NO');
     expect(hiFinder, findsOneWidget);
+  });
+
+  testWidgets('Test is supported [nb-NO]', (WidgetTester tester) async {
+    final csvDelegate = csvTestDelgate();
+    const locale = Locale('nb', 'NO');
+
+    await tester.pumpWidget(buildTestWidgetWithLocale(locale, csvDelegate));
+    await tester.pump();
+
+    expect(csvDelegate.isSupported(locale), true);
   });
 
   test('Locale get codeKey from languageCode', () {
