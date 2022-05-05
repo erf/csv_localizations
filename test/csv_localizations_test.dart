@@ -13,7 +13,6 @@ import 'package:csv_localizations/csv_localizations.dart';
 /// https://stackoverflow.com/questions/49480080/flutter-load-assets-for-tests
 /// https://api.flutter.dev/flutter/widgets/DefaultAssetBundle-class.html
 /// https://stackoverflow.com/questions/52463714/how-to-test-localized-widgets-in-flutter
-/// https://dart.dev/null-safety/migration-guide
 
 ByteData toByteData(String text) {
   return ByteData.view(Uint8List.fromList(utf8.encode(text)).buffer);
