@@ -40,6 +40,9 @@ class CsvLocalizations {
     return this;
   }
 
+  /// Return true if the [locale] is supported.
+  bool isSupported(Locale locale) => true;
+
   /// Get the translation for the given [key].
   String string(String key) {
     final containsLocale = _translationsMap.containsKey(_langTag);
@@ -64,7 +67,8 @@ class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
   const CsvLocalizationsDelegate(this.path, [this.assetBundle]);
 
   @override
-  bool isSupported(Locale locale) => true;
+  bool isSupported(Locale locale) =>
+      CsvLocalizations.instance.isSupported(locale);
 
   @override
   Future<CsvLocalizations> load(Locale locale) =>
