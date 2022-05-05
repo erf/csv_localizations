@@ -4,15 +4,16 @@ import 'package:flutter/services.dart';
 
 /// [CsvLocalizations] is used to load translations from a CSV file.
 class CsvLocalizations {
-  /// map of translations per languageCode
+  /// Map of translations per languageCode
   final Map<String, Map<String, String>> _translationsMap = {};
 
-  /// a key of language / country code used for [_translationsMap]
-  ///
+  /// A key of language / country code used for [_translationsMap]
   late String _langTag;
 
+  /// [CsvLocalizations] constructor.
   CsvLocalizations._();
 
+  /// [CsvLocalizations] instance.
   static final instance = CsvLocalizations._();
 
   /// configure eol before [load]
@@ -41,16 +42,15 @@ class CsvLocalizations {
   }
 
   /// Return true if the [locale] is supported.
-  bool isSupported(Locale locale) => true;
+  bool isSupported(Locale locale) {
+    return true;
+    // TODO this does not work, because the CSV file is not loaded yet
+    //return _translationsMap.containsKey(locale.toLanguageTag());
+  }
 
   /// Get the translation for the given [key].
   String string(String key) {
-    final containsLocale = _translationsMap.containsKey(_langTag);
-    assert(containsLocale, 'Missing localization for code: $_langTag');
-    final translations = _translationsMap[_langTag];
-    final containsKey = translations!.containsKey(key);
-    assert(containsKey, 'Missing localization for translation key: $key');
-    return translations[key]!;
+    return _translationsMap[_langTag]![key]!;
   }
 }
 
