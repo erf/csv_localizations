@@ -59,16 +59,17 @@ You can wrap multiline strings in quotation marks.
 
 ## API
 
-Translate strings using
+Translate strings using:
 
-```dart
+```Dart
 CsvLocalizations.instance.string('Hi')
 ```
 
-We keep the API simple, but you can easily add an extension method to `String`
-like this:
+Or add a `String` extension:
 
-```dart
+> Let's keep the API simple and not pollute the String API
+
+```Dart
 extension LocalizedString on String {
   String tr(BuildContext context) => CsvLocalizations.instance.string(this);
 }
