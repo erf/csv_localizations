@@ -13,6 +13,7 @@ import 'package:csv_localizations/csv_localizations.dart';
 /// https://stackoverflow.com/questions/49480080/flutter-load-assets-for-tests
 /// https://api.flutter.dev/flutter/widgets/DefaultAssetBundle-class.html
 /// https://stackoverflow.com/questions/52463714/how-to-test-localized-widgets-in-flutter
+/// https://api.flutter.dev/flutter/widgets/LocalizationsDelegate-class.html
 
 ByteData toByteData(String text) {
   return ByteData.view(Uint8List.fromList(utf8.encode(text)).buffer);
@@ -87,14 +88,25 @@ void main() {
     expect(hiFinder, findsOneWidget);
   });
 
-  testWidgets('Test is supported [nb-NO]', (WidgetTester tester) async {
+  testWidgets('Test Locale [nb-NO] is supported', (WidgetTester tester) async {
     final csvDelegate = csvTestDelgate();
-    const locale = Locale('nb', 'NO');
 
-    await tester.pumpWidget(buildTestWidgetWithLocale(locale, csvDelegate));
-    await tester.pump();
+    await tester.pumpWidget(
+        buildTestWidgetWithLocale(const Locale('nb', 'NO'), csvDelegate));
+    await tester.pumpAndSettle();
 
-    expect(csvDelegate.isSupported(locale), true);
+    expect(csvDelegate.isSupported(const Locale('nb', 'NO')), true);
+  });
+
+  testWidgets('Test Locale [zh] is NOT supported', (WidgetTester tester) async {
+    final csvDelegate = csvTestDelgate();
+
+    await tester.pumpWidget(
+        buildTestWidgetWithLocale(const Locale('nb', 'NO'), csvDelegate));
+    await tester.pumpAndSettle();
+
+    // TODO isSupported always returns true for now
+    //expect(csvDelegate.isSupported(const Locale('zh')), false);
   });
 
   test('Locale get codeKey from languageCode', () {
