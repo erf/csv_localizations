@@ -2,13 +2,14 @@ import 'package:csv/csv.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 
-/// Store translations per languageCode from a CSV file used by [CsvLocalizationsDelegate]
+/// [CsvLocalizations] is used to load translations from a CSV file.
 class CsvLocalizations {
   /// map of translations per languageCode
   final Map<String, Map<String, String>> _translationsMap = {};
 
-  /// a hash key of language / country code used for [_translationsMap]
-  late String _codeKey;
+  /// a key of language / country code used for [_translationsMap]
+  ///
+  late String _langTag;
 
   CsvLocalizations._();
 
@@ -23,17 +24,17 @@ class CsvLocalizations {
   /// configure eol before [load]
   String eol = '\n';
 
-  /// read csv file and initialize translations once
+  /// Load the CSV file and add translations per language.
   Future<CsvLocalizations> load(
     Locale locale,
     AssetBundle bundle,
-    String assetPath,
+    String path,
   ) async {
-    _codeKey = locale.toLanguageTag();
+    _langTag = locale.toLanguageTag();
 
     if (_loaded) return this;
 
-    final csvDoc = await bundle.loadString(assetPath);
+    final csvDoc = await bundle.loadString(path);
     final rows = CsvToListConverter(eol: eol).convert(csvDoc);
     final languages = List<String>.from(rows.first);
     _translationsMap.addEntries(languages.map((e) => MapEntry(e, {})));
@@ -49,34 +50,35 @@ class CsvLocalizations {
     return this;
   }
 
-  /// get translation given a key
+  /// Get the translation for the given [key].
   String string(String key) {
-    final containsLocale = _translationsMap.containsKey(_codeKey);
-    assert(containsLocale, 'Missing localization for code: $_codeKey');
-    final translations = _translationsMap[_codeKey];
+    final containsLocale = _translationsMap.containsKey(_langTag);
+    assert(containsLocale, 'Missing localization for code: $_langTag');
+    final translations = _translationsMap[_langTag];
     final containsKey = translations!.containsKey(key);
     assert(containsKey, 'Missing localization for translation key: $key');
     return translations[key]!;
   }
 }
 
-/// [CsvLocalizationsDelegate] add this to `MaterialApp.localizationsDelegates`
+/// A [LocalizationsDelegate] that uses [CsvLocalizations] to load translations.
+///
+/// The CSV file must have the following format:
+///   - The first row is the list of languages.
+///   - The first column is the translation keys.
+///   - The other columns are the translations per language.
 class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
-  final String csvPath;
+  final String path;
   final AssetBundle? assetBundle;
 
-  const CsvLocalizationsDelegate(this.csvPath, [this.assetBundle]);
+  const CsvLocalizationsDelegate(this.path, [this.assetBundle]);
 
   @override
   bool isSupported(Locale locale) => true;
 
   @override
   Future<CsvLocalizations> load(Locale locale) =>
-      CsvLocalizations.instance.load(
-        locale,
-        assetBundle ?? rootBundle,
-        csvPath,
-      );
+      CsvLocalizations.instance.load(locale, assetBundle ?? rootBundle, path);
 
   @override
   bool shouldReload(CsvLocalizationsDelegate old) => false;
