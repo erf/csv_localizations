@@ -1,6 +1,6 @@
 name: csv_localizations
 description: A minimal CSV localization package built on LocalizationsDelegate.
-version: 1.5.0
+version: 1.6.0
 homepage: https://github.com/erf/csv_localizations
 
 environment:
