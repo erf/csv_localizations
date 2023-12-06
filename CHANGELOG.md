@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.6.0] - 6 dec 2023
+- update csv 5.0.1 -> 5.1.1
+- update flutter_lits 1.0.4 -> 3.0.1
+- update sdk environment ">=2.12.0 <3.0.0" -> ">=2.18.0 <4.0.0"
+
 ## [1.5.0] - 5 may 2022
 - API: remove loaded
 - use Locale.toLanguageTag to build key
