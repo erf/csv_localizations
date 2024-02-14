@@ -1,26 +1,23 @@
 # csv_localizations
 
-A minimal [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localization package
-for Flutter.
+A minimal [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localization package for Flutter.
 
-Store translations for multiple languages in a single CSV file. One language per column. One translation per row.
-
-## Usage
-
-See [example](example).
+Store translations for multiple languages in a single CSV file. One language per column - one translation per row.
 
 ### Install
 
-Add to your `pubspec.yaml`
+Add `csc_localizations` and `flutter_localizations` to your `pubspec.yaml`.
 
 ```yaml
 dependencies:
-  csv_localizations:
+  flutter_localizations: 
+    sdk: flutter
+  csv_localizations: <last-version>
 ```
 
 ### Add a single CSV asset file
 
-Add a single CSV file as an asset and describe it in your `pubspec.yaml`
+Add a single CSV file asset to your `pubspec.yaml`.
 
 ```yaml
 flutter:
@@ -113,3 +110,8 @@ Example:
 	<string>nb</string>
 </array>
 ```
+
+## Example
+
+See [example](example).
+
