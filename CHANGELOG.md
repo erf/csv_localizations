@@ -1,53 +1,56 @@
 # CHANGELOG
 
-## [1.7.0+1] - 14 feb 2024
+## [1.7.0+2]
+- remove dates from CHANGELOG
+
+## [1.7.0+1]
 - update README
 
-## [1.7.0] - 14 feb 2024
+## [1.7.0]
 - use named args for path / assetBundle
 - README cleanup
 
-## [1.6.0+2] - 14 feb 2024
+## [1.6.0+2]
 - update README
 
-## [1.6.0+1] - 14 feb 2024
+## [1.6.0+1]
 - update README
 
-## [1.6.0] - 6 dec 2023
+## [1.6.0]
 - update csv 5.0.1 -> 5.1.1
 - update flutter_lits 1.0.4 -> 3.0.1
 - update sdk environment ">=2.12.0 <3.0.0" -> ">=2.18.0 <4.0.0"
 
-## [1.5.0] - 5 may 2022
+## [1.5.0]
 - API: remove loaded
 - use Locale.toLanguageTag to build key
 - improve DOCS
 
-## [1.4.0] - 8 mar 2022
+## [1.4.0]
 - fix tests by adding GlobalMaterialLocalizations.delegates
 - add lints
 - replace forEach with for loop
 - use const 
 - don't interpolate string
 
-## [1.3.0] - 2 dec 2021
+## [1.3.0]
 - update csv package to 5.0.1
 
-## [1.2.0+1] - 1 aug 2021
+## [1.2.0+1]
 - simplify README.md
 
-## [1.2.0] - 16 march 2021
+## [1.2.0]
 - change min Dart version: 2.12.0-0 -> 2.12.0
 
-## [1.1.0] - 16 march 2021
+## [1.1.0]
 - update csv to 5.0.0
 
-## [1.0.0] - 3 march 2021
+## [1.0.0]
 - stable null-safety release !
 - added widget tests
 - pass optional asset bundle
 
-## [0.9.0-nullsafety.0] - 2 feb 2021
+## [0.9.0-nullsafety.0]
 - updated csv package and migrated to nullsafety
 
 ## [0.8.0+1]
