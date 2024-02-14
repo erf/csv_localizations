@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [1.6.0+2] - 14 feb 2024
+- update README
+
 ## [1.6.0+1] - 14 feb 2024
 - update README
 
