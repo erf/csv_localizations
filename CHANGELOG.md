@@ -1,7 +1,10 @@
 # CHANGELOG
 
+## [1.7.0+4]
+- update README
+
 ## [1.7.0+3]
-- RAEDME
+- update README
 
 ## [1.7.0+2]
 - remove dates from CHANGELOG
@@ -11,13 +14,13 @@
 
 ## [1.7.0]
 - use named args for path / assetBundle
-- README cleanup
+- README
 
 ## [1.6.0+2]
-- update README
+- README
 
 ## [1.6.0+1]
-- update README
+- README
 
 ## [1.6.0]
 - update csv 5.0.1 -> 5.1.1
