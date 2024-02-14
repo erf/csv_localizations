@@ -17,14 +17,6 @@ dependencies:
   csv_localizations: <last-version>
 ```
 
-Add a single CSV file asset to your `pubspec.yaml`.
-
-```yaml
-flutter:
-  assets:
-    - assets/translations.csv
-```
-
 Add `CsvLocalizationsDelegate` and supported locales to `MaterialApp`.
 
 ```Dart
@@ -43,6 +35,15 @@ MaterialApp(
   ],
 }
 ```
+
+Add a single CSV file asset to your `pubspec.yaml`.
+
+```yaml
+flutter:
+  assets:
+    - assets/translations.csv
+```
+
 
 ### Note on **iOS**
 
