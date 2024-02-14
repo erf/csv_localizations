@@ -25,7 +25,7 @@ flutter:
     - assets/translations.csv
 ```
 
-Add `CsvLocalizationsDelegate` to `localizationsDelegates` and add `supportedLocales` to `MaterialApp`.
+Add `CsvLocalizationsDelegate` and supported locales to `MaterialApp`.
 
 ```Dart
 MaterialApp(
@@ -46,8 +46,7 @@ MaterialApp(
 
 ### Note on **iOS**
 
-Add supported languages to `ios/Runner/Info.plist` as described
-[here](https://flutter.dev/docs/development/accessibility-and-localization/internationalization#specifying-supportedlocales).
+Add supported locales to `ios/Runner/Info.plist` as described [here](https://flutter.dev/docs/development/accessibility-and-localization/internationalization#specifying-supportedlocales)
 
 Example:
 
@@ -61,7 +60,7 @@ Example:
 
 ## Format
 
-First row lists supported language/country codes.  First column are keys for localized values.
+First row are supported language/country codes. First column are keys for localized values.
 
 | key  | en   | nb     |
 |------|------|--------|
