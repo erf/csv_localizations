@@ -4,7 +4,7 @@ A minimal [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) localizati
 
 Store translations for multiple languages in a single CSV file.
 
- One language per column - one translation per row.
+One language per column - one translation per row.
 
 ## Install
 
@@ -15,6 +15,14 @@ dependencies:
   flutter_localizations: 
     sdk: flutter
   csv_localizations: <last-version>
+```
+
+Add a single CSV file asset to your `pubspec.yaml`.
+
+```yaml
+flutter:
+  assets:
+    - assets/translations.csv
 ```
 
 Add `CsvLocalizationsDelegate` and supported locales to `MaterialApp`.
@@ -35,15 +43,6 @@ MaterialApp(
   ],
 }
 ```
-
-Add a single CSV file asset to your `pubspec.yaml`.
-
-```yaml
-flutter:
-  assets:
-    - assets/translations.csv
-```
-
 
 ### Note on **iOS**
 
@@ -104,7 +103,14 @@ extension LocalizedString on String {
   String tr(BuildContext context) => CsvLocalizations.instance.string(this);
 }
 ```
+
 > We don't want to pollute the String API by default
+
+Now you could easily translate strings like this:
+
+```Dart
+'Hi'.tr(context)
+```
 
 We use `\n` as the default end-of-line char, but you can change this via `CsvLocalizations.instance.eol`
 
