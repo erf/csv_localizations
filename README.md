@@ -61,7 +61,13 @@ Example:
 
 ## Format
 
+A [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file is a simple table-as-a-text-file with comma separated values as columns and new lines as rows.
+
+In our case columns represents translations for a specific language and rows represent translations for a given key.
+
 First row are supported language/country codes. First column are keys for localized values.
+
+Example table:
 
 | key  | en   | nb     |
 |------|------|--------|
@@ -69,9 +75,10 @@ First row are supported language/country codes. First column are keys for locali
 | Dog  | Dog  | Hund   |
 | Cat  | Cat  | Cat    |
 
-> Tip keys can point to local assets like images
 
-Example file:
+> Tip (1) wrap multiline strings in quotation marks
+
+Example CSV:
 
 ```csv
 key,en,nb
@@ -80,8 +87,7 @@ Dog,Dog,Hund
 Cat,Cat,Katt
 my_img,assets/en.png,assets/nb.png
 ```
-
-> Tip wrap multiline strings in quotation marks
+> Tip (2) keys can point to local assets like images
 
 ## API
 
@@ -91,19 +97,18 @@ Translate text using:
 CsvLocalizations.instance.string('Hi')
 ```
 
-or add a `String` extension:
-
-> Note: we don't want to pollute the String API by default
+Or add a `String` extension:
 
 ```Dart
 extension LocalizedString on String {
   String tr(BuildContext context) => CsvLocalizations.instance.string(this);
 }
 ```
+> We don't want to pollute the String API by default
 
 We use `\n` as the default end-of-line char, but you can change this via `CsvLocalizations.instance.eol`
 
 
 ## Example
 
-See [example](example).
+See [example](example)
