@@ -31,43 +31,39 @@ flutter:
 #### Example CSV file
 
 ```csv
-key,en,nb,en-GB,en-US
-Hi,Hi,Hei,Hi GB,Hi US
-my_img,assets/en.png,assets/nb.png,assets/en.png,assets/en.png
-Multiline,"This is a
-  multiline string","Denne teksten går over
-  flere linjer","This is a
-  multiline string","This is a
-  multiline string"
+key,en,nb
+Hi,Hi,Hei
+Dog,Dog,Hund
+Cat,Cat,Katt
+my_img,assets/en.png,assets/nb.png
 ```
 
 > Tip: keys can point to local assets like images etc.
 
 ### Format
 
-| key  | en-GB | en   | nb     |
-|------|-------|------|--------|
-| Hi   | Hi    | Hi   | Hei    |
-| Bike | Bike  | Bike | Sykkel |
-| Dog  | Dog   | Dog  | Hund   |
+| key  | en   | nb     |
+|------|------|--------|
+| Hi   | Hi   | Hei    |
+| Dog  | Dog  | Hund   |
+| Cat  | Cat  | Cat    |
 
-First row lists supported language/country codes.
+First row lists supported language/country codes. First column are keys for
+localized values.
 
-First column are keys for localized values.
-
-You can wrap multiline strings in quotation marks.
+> Tip: you can wrap multiline strings in quotation marks
 
 ## API
 
-Translate strings using:
+Translate String's using:
 
 ```Dart
 CsvLocalizations.instance.string('Hi')
 ```
 
-Or add a `String` extension:
+or add a `String` extension:
 
-> Let's keep the API simple and not pollute the String API
+> We keep the API simple as to not pollute the String API
 
 ```Dart
 extension LocalizedString on String {
@@ -78,9 +74,6 @@ extension LocalizedString on String {
 We use `\n` as the default **eol** (end-of-line) char, but you can set this via
 `CsvLocalizations.instance.eol`.
 
-Check if the translation file is loaded using `CsvLocalizations.instance.loaded`.
-Only necessary if called before initializing the global localizationDelegates.
-
 ### MaterialApp
 
 Add `CsvLocalizationsDelegate` to `MaterialApp` and set `supportedLocales` using
@@ -89,7 +82,11 @@ language codes.
 ```
 MaterialApp(
   localizationsDelegates: [
-    ... // global delegates
+    // delegate from flutter_localization
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    // delegate from csv_localizations
     CsvLocalizationsDelegate('assets/translations.csv'),
   ],
   supportedLocales: [
@@ -113,8 +110,6 @@ Example:
 <key>CFBundleLocalizations</key>
 <array>
 	<string>en</string>
-	<string>en-US</string>
-	<string>en-GB</string>
 	<string>nb</string>
 </array>
 ```
