@@ -64,7 +64,7 @@ class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
   final String path;
   final AssetBundle? assetBundle;
 
-  const CsvLocalizationsDelegate(this.path, [this.assetBundle]);
+  const CsvLocalizationsDelegate({required this.path, this.assetBundle});
 
   @override
   bool isSupported(Locale locale) =>

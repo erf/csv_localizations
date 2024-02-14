@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       localizationsDelegates: const [
         ...GlobalMaterialLocalizations.delegates,
-        CsvLocalizationsDelegate('assets/translations.csv'),
+        CsvLocalizationsDelegate(path: 'assets/translations.csv'),
       ],
       supportedLocales: const [
         Locale('en', 'GB'),

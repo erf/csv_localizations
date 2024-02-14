@@ -51,7 +51,8 @@ Widget buildTestWidgetWithLocale(
 
 // get csv localizations
 CsvLocalizationsDelegate csvTestDelgate() {
-  return CsvLocalizationsDelegate('assets/translations.csv', TestAssetBundle());
+  return CsvLocalizationsDelegate(
+      path: 'assets/translations.csv', assetBundle: TestAssetBundle());
 }
 
 void main() {
