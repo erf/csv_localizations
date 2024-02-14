@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [1.7.0+1] - 14 feb 2024
+- update README
+
 ## [1.7.0] - 14 feb 2024
 - use named args for path / assetBundle
 - README cleanup
