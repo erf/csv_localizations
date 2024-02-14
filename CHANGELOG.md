@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [1.6.0+1] - 14 feb 2024
+- update README
+
 ## [1.6.0] - 6 dec 2023
 - update csv 5.0.1 -> 5.1.1
 - update flutter_lits 1.0.4 -> 3.0.1
