@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:csv_localizations/csv_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:csv_localizations/csv_localizations.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 /// https://flutter.dev/docs/testing
 /// https://flutter.dev/docs/cookbook/testing/unit/introduction
@@ -52,7 +52,13 @@ Widget buildTestWidgetWithLocale(
 // get csv localizations
 CsvLocalizationsDelegate csvTestDelgate() {
   return CsvLocalizationsDelegate(
-      path: 'assets/translations.csv', assetBundle: TestAssetBundle());
+    path: 'assets/translations.csv',
+    assetBundle: TestAssetBundle(),
+    configurations: CsvLocalizationsConfigurations(
+      eol: '\n',
+      fieldDelimiter: ',',
+    ),
+  );
 }
 
 void main() {

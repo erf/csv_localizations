@@ -16,43 +16,23 @@ class CsvLocalizations {
   /// [CsvLocalizations] instance.
   static final instance = CsvLocalizations._();
 
-  /// Configuration fieldDelimiter (default is ',', another common is ';')
-  String fieldDelimiter = ',';
-
-  /// Configuration textDelimiter
-  String textDelimiter = '"';
-
-  /// Configuration textEndDelimiter
-  String textEndDelimiter = '"';
-
-  /// Configuration eol
-  String eol = '\n';
-
-  /// Configuration convertEmptyTo
-  String convertEmptyTo = '';
-
-  /// Configuration allowInvalid
-  bool allowInvalid = true;
-
-  /// Configuration shouldParseNumbers
-  bool shouldParseNumbers = true;
-
   /// Load the CSV file and add translations per language.
-  Future<CsvLocalizations> load(
-    Locale locale,
-    AssetBundle bundle,
-    String path,
-  ) async {
+  Future<CsvLocalizations> load({
+    required Locale locale,
+    required AssetBundle bundle,
+    required String path,
+    CsvLocalizationsConfigurations? configurations,
+  }) async {
     _langTag = locale.toLanguageTag();
     final csvDoc = await bundle.loadString(path);
     final rows = CsvToListConverter(
-      fieldDelimiter: fieldDelimiter,
-      textDelimiter: textDelimiter,
-      textEndDelimiter: textEndDelimiter,
-      eol: eol,
-      convertEmptyTo: convertEmptyTo,
-      allowInvalid: allowInvalid,
-      shouldParseNumbers: shouldParseNumbers,
+      fieldDelimiter: configurations?.fieldDelimiter,
+      textDelimiter: configurations?.textDelimiter,
+      textEndDelimiter: configurations?.textEndDelimiter,
+      eol: configurations?.eol,
+      convertEmptyTo: configurations?.convertEmptyTo,
+      allowInvalid: configurations?.allowInvalid,
+      shouldParseNumbers: configurations?.shouldParseNumbers,
     ).convert(csvDoc);
     final languages = List<String>.from(rows.first);
     _translationsMap.addEntries(languages.map((e) => MapEntry(e, {})));
@@ -89,8 +69,13 @@ class CsvLocalizations {
 class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
   final String path;
   final AssetBundle? assetBundle;
+  final CsvLocalizationsConfigurations? configurations;
 
-  const CsvLocalizationsDelegate({required this.path, this.assetBundle});
+  const CsvLocalizationsDelegate({
+    required this.path,
+    this.assetBundle,
+    this.configurations,
+  });
 
   @override
   bool isSupported(Locale locale) =>
@@ -98,8 +83,48 @@ class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
 
   @override
   Future<CsvLocalizations> load(Locale locale) =>
-      CsvLocalizations.instance.load(locale, assetBundle ?? rootBundle, path);
+      CsvLocalizations.instance.load(
+        locale: locale,
+        bundle: assetBundle ?? rootBundle,
+        path: path,
+        configurations: configurations,
+      );
 
   @override
   bool shouldReload(CsvLocalizationsDelegate old) => false;
+}
+
+/// [CsvLocalizationsConfigurations] is used to configure the CSV parser.
+class CsvLocalizationsConfigurations {
+  /// Configuration fieldDelimiter (default is ',', another common is ';')
+  final String fieldDelimiter;
+
+  /// Configuration textDelimiter
+  final String textDelimiter;
+
+  /// Configuration textEndDelimiter
+  final String textEndDelimiter;
+
+  /// Configuration eol
+  final String eol;
+
+  /// Configuration convertEmptyTo
+  final String convertEmptyTo;
+
+  /// Configuration allowInvalid
+  final bool allowInvalid;
+
+  /// Configuration shouldParseNumbers
+  final bool shouldParseNumbers;
+
+  /// [CsvLocalizationsConfigurations] constructor.
+  const CsvLocalizationsConfigurations({
+    this.fieldDelimiter = ',',
+    this.textDelimiter = '"',
+    this.textEndDelimiter = '"',
+    this.eol = '\n',
+    this.convertEmptyTo = '',
+    this.allowInvalid = true,
+    this.shouldParseNumbers = true,
+  });
 }

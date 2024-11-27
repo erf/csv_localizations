@@ -5,9 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'string_ext.dart';
 
 void main() {
-  CsvLocalizations.instance.eol = '\n';
-  CsvLocalizations.instance.fieldDelimiter = ';';
-
   runApp(const MyApp());
 }
 
@@ -19,7 +16,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       localizationsDelegates: const [
         ...GlobalMaterialLocalizations.delegates,
-        CsvLocalizationsDelegate(path: 'assets/translations_semicolon.csv'),
+        CsvLocalizationsDelegate(
+          path: 'assets/translations_semicolon.csv',
+          configurations: CsvLocalizationsConfigurations(
+            eol: '\n',
+            fieldDelimiter: ';',
+          ),
+        ),
       ],
       supportedLocales: const [
         Locale('en', 'GB'),
@@ -40,10 +43,10 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
