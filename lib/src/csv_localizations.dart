@@ -59,4 +59,3 @@ class CsvLocalizations {
     return _translationsMap[_langTag]![key]!;
   }
 }
-
