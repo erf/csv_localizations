@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [2.0.0+7]
+
+- mention configurations in the README
+
 ## [2.0.0+6]
 
 - support all configurations of the `csv` package

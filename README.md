@@ -12,7 +12,7 @@ Add `csc_localizations` and `flutter_localizations` to your `pubspec.yaml`.
 
 ```yaml
 dependencies:
-  flutter_localizations: 
+  flutter_localizations:
     sdk: flutter
   csv_localizations: <last-version>
 ```
@@ -31,9 +31,7 @@ Add `CsvLocalizationsDelegate` and supported locales to `MaterialApp`.
 MaterialApp(
   localizationsDelegates: [
     // delegate from flutter_localization
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
+    ...GlobalMaterialLocalizations.delegates,
     // delegate from csv_localizations
     CsvLocalizationsDelegate(path: 'assets/translations.csv'),
   ],
@@ -68,12 +66,11 @@ First row are supported language/country codes. First column are keys for locali
 
 Example table:
 
-| key  | en   | nb     |
-|------|------|--------|
-| Hi   | Hi   | Hei    |
-| Dog  | Dog  | Hund   |
-| Cat  | Cat  | Cat    |
-
+| key | en  | nb   |
+| --- | --- | ---- |
+| Hi  | Hi  | Hei  |
+| Dog | Dog | Hund |
+| Cat | Cat | Cat  |
 
 > Tip (1) wrap multiline strings in quotation marks
 
@@ -86,6 +83,7 @@ Dog,Dog,Hund
 Cat,Cat,Katt
 my_img,assets/en.png,assets/nb.png
 ```
+
 > Tip (2) keys can point to local assets like images
 
 ## API
@@ -112,8 +110,25 @@ Now you could easily translate strings like this:
 'Hi'.tr(context)
 ```
 
-We use `\n` as the default end-of-line char, but you can change this via `CsvLocalizations.instance.eol`
+## Configurations
 
+We support all the configurations from the `csv` package.
+
+You can set it via `CsvLocalizationsConfigurations` when creating the `CsvLocalizationsDelegate`.
+
+Here are the default configurations:
+
+```Dart
+  const CsvLocalizationsConfigurations({
+    this.fieldDelimiter = ',',
+    this.textDelimiter = '"',
+    this.textEndDelimiter = '"',
+    this.eol = '\n',
+    this.convertEmptyTo = '',
+    this.allowInvalid = true,
+    this.shouldParseNumbers = true,
+  });
+```
 
 ## Example
 
