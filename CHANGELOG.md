@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [2.0.0+8]
+
+- we now support number values via `numValue`, `intValue` and `doubleValue`
+
 ## [2.0.0+7]
 
 - mention configurations in the README
