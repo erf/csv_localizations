@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## [2.0.0+8]
+## [2.2.0+9]
+
+- if a value for a key is not found, we now return the key itself
+
+## [2.1.0+8]
 
 - we now support number values via `numValue`, `intValue` and `doubleValue`
 

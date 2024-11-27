@@ -110,6 +110,8 @@ Now you could easily translate strings like this:
 'Hi'.tr(context)
 ```
 
+> Note if a value does not exists for a given key, we return the key itself
+
 We also support `num`, `int` and `double` via:
 
 ```Dart
