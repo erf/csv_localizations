@@ -1,6 +1,6 @@
 import 'package:csv/csv.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
 /// [CsvLocalizations] is used to load translations from a CSV file.
 class CsvLocalizations {
@@ -16,8 +16,26 @@ class CsvLocalizations {
   /// [CsvLocalizations] instance.
   static final instance = CsvLocalizations._();
 
-  /// configure eol before [load]
+  /// Configuration fieldDelimiter (default is ',', another common is ';')
+  String fieldDelimiter = ',';
+
+  /// Configuration textDelimiter
+  String textDelimiter = '"';
+
+  /// Configuration textEndDelimiter
+  String textEndDelimiter = '"';
+
+  /// Configuration eol
   String eol = '\n';
+
+  /// Configuration convertEmptyTo
+  String convertEmptyTo = '';
+
+  /// Configuration allowInvalid
+  bool allowInvalid = true;
+
+  /// Configuration shouldParseNumbers
+  bool shouldParseNumbers = true;
 
   /// Load the CSV file and add translations per language.
   Future<CsvLocalizations> load(
@@ -27,7 +45,15 @@ class CsvLocalizations {
   ) async {
     _langTag = locale.toLanguageTag();
     final csvDoc = await bundle.loadString(path);
-    final rows = CsvToListConverter(eol: eol).convert(csvDoc);
+    final rows = CsvToListConverter(
+      fieldDelimiter: fieldDelimiter,
+      textDelimiter: textDelimiter,
+      textEndDelimiter: textEndDelimiter,
+      eol: eol,
+      convertEmptyTo: convertEmptyTo,
+      allowInvalid: allowInvalid,
+      shouldParseNumbers: shouldParseNumbers,
+    ).convert(csvDoc);
     final languages = List<String>.from(rows.first);
     _translationsMap.addEntries(languages.map((e) => MapEntry(e, {})));
     for (int i = 0; i < languages.length; i++) {
