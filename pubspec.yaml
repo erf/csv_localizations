@@ -4,16 +4,16 @@ version: 1.7.0+5
 homepage: https://github.com/erf/csv_localizations
 
 environment:
-  sdk: ">=2.18.0 <4.0.0"
+  sdk: ">=2.12.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  csv: ^5.1.1
+  csv: ^6.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_lints: ^3.0.1
+  flutter_lints: ^5.0.0
