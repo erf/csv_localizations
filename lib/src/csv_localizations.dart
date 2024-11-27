@@ -87,7 +87,8 @@ class CsvLocalizationsDelegate extends LocalizationsDelegate<CsvLocalizations> {
         locale: locale,
         bundle: assetBundle ?? rootBundle,
         path: path,
-        configurations: configurations,
+        configurations:
+            configurations ?? const CsvLocalizationsConfigurations(),
       );
 
   @override
