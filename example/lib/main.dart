@@ -78,11 +78,29 @@ class MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Text(
-            'num'.intValue.toString(),
+            'num'.numValue.toString(),
             style: const TextStyle(
               fontSize: 24,
             ),
-          )
+          ),
+          Text(
+            'int'.intValue.toString(),
+            style: const TextStyle(
+              fontSize: 24,
+            ),
+          ),
+          Text(
+            'double'.doubleValue.toString(),
+            style: const TextStyle(
+              fontSize: 24,
+            ),
+          ),
+          Text(
+            'someStringWeHaventTranslatedYet'.tr,
+            style: const TextStyle(
+              fontSize: 24,
+            ),
+          ),
         ],
       ),
     );

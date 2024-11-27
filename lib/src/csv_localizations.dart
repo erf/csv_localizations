@@ -56,7 +56,7 @@ class CsvLocalizations {
 
   /// Get the translation for the given [key].
   String string(String key) {
-    return _translationsMap[_langTag]![key]!;
+    return _translationsMap[_langTag]![key] ?? key;
   }
 
   /// get the num value for the given [key].
