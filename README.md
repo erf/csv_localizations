@@ -110,6 +110,16 @@ Now you could easily translate strings like this:
 'Hi'.tr(context)
 ```
 
+We also support `num`, `int` and `double` via:
+
+```Dart
+CsvLocalizations.instance.numValue('my_num')
+
+CsvLocalizations.instance.intValue('my_int')
+
+CsvLocalizations.instance.doubleValue('my_double')
+```
+
 ## Configurations
 
 We support all the configurations from the `csv` package.
