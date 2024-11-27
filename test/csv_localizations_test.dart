@@ -18,10 +18,18 @@ ByteData toByteData(String text) {
   return ByteData.view(Uint8List.fromList(utf8.encode(text)).buffer);
 }
 
+const testString = '''
+key,en,en-US,nb,nb-NO
+Hi,Hi,Hi US,Hei,Hei NO
+int,10,20,30,40
+double,1.5,2.5,3.5,4.5
+num,10.5,20.5,30.5,40.5
+''';
+
 class TestAssetBundle extends CachingAssetBundle {
   @override
   Future<ByteData> load(String key) async {
-    return toByteData('key,en,en-US,nb,nb-NO\nHi,Hi,Hi US,Hei,Hei NO');
+    return toByteData(testString);
   }
 }
 
@@ -43,7 +51,24 @@ Widget buildTestWidgetWithLocale(
     ],
     home: Scaffold(
       body: Builder(
-        builder: (context) => Text(CsvLocalizations.instance.string('Hi')),
+        builder: (context) {
+          return Column(
+            children: [
+              Text(
+                CsvLocalizations.instance.string('Hi'),
+              ),
+              Text(
+                CsvLocalizations.instance.intValue('int').toString(),
+              ),
+              Text(
+                CsvLocalizations.instance.doubleValue('double').toString(),
+              ),
+              Text(
+                CsvLocalizations.instance.numValue('num').toString(),
+              )
+            ],
+          );
+        },
       ),
     ),
   );
@@ -123,5 +148,29 @@ void main() {
   test('Locale get codeKey from languageCode and country', () {
     expect(const Locale('en', 'US').toLanguageTag(), 'en-US');
     expect(const Locale('en', 'GB').toLanguageTag(), 'en-GB');
+  });
+
+  testWidgets('MyTestApp find [nb] int value', (WidgetTester tester) async {
+    await tester.pumpWidget(
+        buildTestWidgetWithLocale(const Locale('nb'), csvTestDelgate()));
+    await tester.pump();
+    final numberFinder = find.text('30');
+    expect(numberFinder, findsOneWidget);
+  });
+
+  testWidgets('MyTestApp find [nb] double value', (WidgetTester tester) async {
+    await tester.pumpWidget(
+        buildTestWidgetWithLocale(const Locale('nb'), csvTestDelgate()));
+    await tester.pump();
+    final numberFinder = find.text('3.5');
+    expect(numberFinder, findsOneWidget);
+  });
+
+  testWidgets('MyTestApp find [nb] num value', (WidgetTester tester) async {
+    await tester.pumpWidget(
+        buildTestWidgetWithLocale(const Locale('nb'), csvTestDelgate()));
+    await tester.pump();
+    final numberFinder = find.text('30.5');
+    expect(numberFinder, findsOneWidget);
   });
 }

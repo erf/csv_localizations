@@ -17,10 +17,11 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: const [
         ...GlobalMaterialLocalizations.delegates,
         CsvLocalizationsDelegate(
-          path: 'assets/translations_semicolon.csv',
+          path: 'assets/translations.csv',
           configurations: CsvLocalizationsConfigurations(
             eol: '\n',
-            fieldDelimiter: ';',
+            fieldDelimiter: ',',
+            shouldParseNumbers: true,
           ),
         ),
       ],
@@ -76,6 +77,12 @@ class MyHomePageState extends State<MyHomePage> {
               fontSize: 24,
             ),
           ),
+          Text(
+            'num'.intValue.toString(),
+            style: const TextStyle(
+              fontSize: 24,
+            ),
+          )
         ],
       ),
     );
