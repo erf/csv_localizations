@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:csv_localizations/csv_localizations.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'string_ext.dart';
 
 void main() {
   CsvLocalizations.instance.eol = '\n';
+  CsvLocalizations.instance.fieldDelimiter = ';';
 
   runApp(const MyApp());
 }
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       localizationsDelegates: const [
         ...GlobalMaterialLocalizations.delegates,
-        CsvLocalizationsDelegate(path: 'assets/translations.csv'),
+        CsvLocalizationsDelegate(path: 'assets/translations_semicolon.csv'),
       ],
       supportedLocales: const [
         Locale('en', 'GB'),
