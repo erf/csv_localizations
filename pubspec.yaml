@@ -1,10 +1,10 @@
 name: csv_localizations
 description: A minimal CSV localization package built on LocalizationsDelegate.
-version: 2.2.0+9
+version: 2.3.0
 homepage: https://github.com/erf/csv_localizations
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -16,4 +16,4 @@ dev_dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0

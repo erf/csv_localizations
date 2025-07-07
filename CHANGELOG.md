@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [2.3.0]
+- update packages and SDK constraints
+- remove package name
+- update example
+
 ## [2.2.0+9]
 
 - if a value for a key is not found, we now return the key itself
